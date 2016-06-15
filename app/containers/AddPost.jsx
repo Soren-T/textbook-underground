@@ -34,6 +34,7 @@ export default class AddPost extends React.Component {
 		}).catch(function(ex) {
 			console.log('parsing failed', ex)
 		})
+		
 	}
 
   	render() {
