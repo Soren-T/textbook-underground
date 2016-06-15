@@ -40,6 +40,8 @@ export default class AddPost extends React.Component {
 	    return (
 	      <div className={cx('home')}>
 	        <h1 className={cx('home__header')}>Welcome to Soren's Blog!</h1>
+	      		<p>Author</p> 
+	      			<input onChange={(e)=>this.setState({author:e.target.value})} />
 	      		<p>Title</p> 
 	      			<input onChange={(e)=>this.setState({title:e.target.value})} />
 	      		<p>Slug</p> 
