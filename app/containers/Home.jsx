@@ -29,7 +29,8 @@ export default class Home extends React.Component {
 		return (
 		  <div>
 		    <h1>Home Page</h1>
-		    <ul>{this.state.posts.map((post)=><li>Title {(post.title)}<br/>Written By:{(post.author)}<br/>{(post.body)}</li>)}</ul>
+		   	<input type="text" name="search" placeholder="Search.."/>
+		    <ul>{this.state.posts.map((post)=><li>Title: {(post.title)}<br/>Written By:{(post.author)}<br/>{(post.body)}</li>)}</ul>
 		  </div>
 		);
   	}
