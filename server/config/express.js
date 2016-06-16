@@ -20,8 +20,6 @@ module.exports = function (app, passport) {
   app.set('view cache', false);
   app.use(morgan('dev'));
   app.use(cookieParser());
-  app.use(passport.initialize());
-  app.use(passport.session());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
   app.use(methodOverride());
@@ -81,5 +79,7 @@ module.exports = function (app, passport) {
   app.use(session(sess));
 
   app.use(flash());
+  app.use(passport.initialize());
+  app.use(passport.session());
 
 };
