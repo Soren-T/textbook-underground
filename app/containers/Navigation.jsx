@@ -10,13 +10,11 @@ const cx = classNames.bind(styles);
 class Navigation extends Component {
 
   render() {
-    return (
-	    <div>	
+    return (	
 	      <nav className={cx('navigation')} role="navigation">
 	      	<Link to="/" className={cx('item')} activeClassName={cx('active')}>Home</Link>
 	        <Link to="/add-post" className={cx('item')} activeClassName={cx('active')}>Add Post</Link>
 	      </nav>
-	     </div> 
     );
   }
 

@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
-import styles from 'css/components/navigation';
+import styles from '../css/components/home';
 import { browserHistory } from 'react-router'
 
 const cx = classNames.bind(styles);
@@ -66,9 +66,9 @@ export default class Home extends React.Component {
 		   	<br/>
 		    <div>
 		    	{this.state.posts.map((post)=><div>
-		    	<h3>Title: {(post.title)}</h3>
-		    	<h4>Written By: {(post.author)}</h4>
-		    	{(post.body)}<br/>
+		    	<h3 className={cx("blogTitles")}>Title: {(post.title)}</h3>
+		    	<h4 className={cx("blogAuthor")}>Written By: {(post.author)}</h4>
+		    	<p className={cx("blogBody")}>{(post.body)}</p>
 		    	<br/>
 		    	</div>)}
 		    </div>
