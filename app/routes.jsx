@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from 'containers/App';
 import AddPost from 'containers/AddPost';
 import Home from 'containers/Home';
+import Editor from 'containers/Editor';
 
 /*
  * @param {Redux Store}
@@ -16,6 +17,7 @@ export default (store) => {
     	<IndexRoute component={Home} />
     	<Route path="/" component={Home} />
       	<Route path="add-post" component={AddPost} />
+      	<Route path="editor/:slug" component={Editor} />
     </Route>
   );
 };

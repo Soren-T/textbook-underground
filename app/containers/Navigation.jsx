@@ -11,10 +11,12 @@ class Navigation extends Component {
 
   render() {
     return (
-      <nav className={cx('navigation')} role="navigation">
-        <Link to="/add-post" className={cx('item')} activeClassName={cx('active')}>Add Post</Link>
-        <Link to="/" className={cx('item')} activeClassName={cx('active')}>Home</Link>
-      </nav>
+	    <div>	
+	      <nav className={cx('navigation')} role="navigation">
+	      	<Link to="/" className={cx('item')} activeClassName={cx('active')}>Home</Link>
+	        <Link to="/add-post" className={cx('item')} activeClassName={cx('active')}>Add Post</Link>
+	      </nav>
+	     </div> 
     );
   }
 

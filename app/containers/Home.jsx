@@ -1,5 +1,12 @@
-import React from 'react';
 import 'whatwg-fetch';
+import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import classNames from 'classnames/bind';
+import styles from 'css/components/navigation';
+import { browserHistory } from 'react-router'
+
+const cx = classNames.bind(styles);
 
 /*
  * Note: This is kept as a container-level component, 
@@ -14,7 +21,7 @@ export default class Home extends React.Component {
 			text : "",
 		};
 	}
-	componentWillMount(){
+	componentDidMount(){
 		var self = this
 		fetch('/api/v1/posts')
 		.then(function(response) {
@@ -35,9 +42,11 @@ export default class Home extends React.Component {
 		if(this.state.text===""){
 			return ""
 		}
+		console.log(this.state.text,this.state.posts)
 		return this.state.posts
-		 .filter((value) => value.title.toLowerCase().startsWith(self.state.text.toLowerCase())) 
+		 .filter((value) => value.title && value.title.toLowerCase().startsWith(self.state.text.toLowerCase())) 
 		 .map((value) => (<div>
+		 					<br/>
 		 					<BlogItem post = {value}/>
 		 				</div>))
 	}
@@ -51,12 +60,14 @@ export default class Home extends React.Component {
 		   		name="search" 
 		   		value={this.state.text} 
 		   		onChange={(event) => {this.textChange(event)}} 
-		   		placeholder="Search.." />
+		   		placeholder="Search by Title.." />
+		   		<br/>
 		   	{this.compare()}
+		   	<br/>
 		    <div>
 		    	{this.state.posts.map((post)=><div>
-		    	Title: {(post.title)}<br/>
-		    	Written By: {(post.author)}<br/>
+		    	<h3>Title: {(post.title)}</h3>
+		    	<h4>Written By: {(post.author)}</h4>
 		    	{(post.body)}<br/>
 		    	<br/>
 		    	</div>)}
@@ -68,31 +79,14 @@ export default class Home extends React.Component {
 };
 
 class BlogItem extends React.Component{
-	deletePost(){
-		console.log('DELETING POST', this.props)
-		var self = this
-		fetch('api/v1/posts/'+self.props.post.slug, {
-			method: 'DELETE',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			}})
-		.then(function(response) {
-			return response.json()
-		}).then(function(json) {
-			console.log('parsed json', json)
-		}).catch(function(ex) {
-			console.log('parsing failed', ex)
-		})
 
-	}
 	render(){
 		var self = this
 		return (<div>
 			{(this.props.post.title)}<br/>
-			{(this.props.post.author)}<br/>
+			<h4> - {(this.props.post.author)}</h4>
 			{(this.props.post.body)}<br/>
-			<button onClick={self.deletePost.bind(self)}>Delete</button><br/>
+			<Link to={`/editor/${self.props.post.slug}`} className={cx('item')} activeClassName={cx('active')}>Edit Post</Link>
 			<br/>
 			</div>)
 	}

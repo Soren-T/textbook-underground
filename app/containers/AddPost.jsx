@@ -1,8 +1,8 @@
 import React from 'react';
-
 import classNames from 'classnames/bind';
 import styles from 'css/components/home';
 import 'whatwg-fetch';
+import { browserHistory } from 'react-router'
 
 const cx = classNames.bind(styles);
 
@@ -19,6 +19,7 @@ export default class AddPost extends React.Component {
 		};
 	}
 	submitPost(){
+		var self = this
 		fetch('/api/v1/posts', {
 			method: 'POST',
 			headers: {
@@ -33,8 +34,9 @@ export default class AddPost extends React.Component {
 			console.log('parsed json', json)
 		}).catch(function(ex) {
 			console.log('parsing failed', ex)
-		})
-		
+		}).then(function() {
+			browserHistory.push('/')
+		})	
 	}
 
   	render() {

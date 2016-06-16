@@ -24,7 +24,7 @@ function retrieveAll(req, res){
 }
 //get post:slug
 function retrieveOne(req, res){
-	Post.find(function (err, post) {
+	Post.findOne({slug: req.params.slug},function (err, post) {
 			if (err) return console.error(err);
 			console.log(post);
 			console.log('recieved a GET request')
