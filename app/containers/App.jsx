@@ -19,11 +19,7 @@ export default class App extends Component {
   render() {
     return (
       <div className={cx('app')}>
-      	<div className={cx('background')}>
-      		<h1>Welcome to Soren's Blog</h1>
-      	</div>
-      	<Navigation />
-        {this.props.children}
+      	<h1>Textbook-Underground</h1>
       </div>
     );
   }
