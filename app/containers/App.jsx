@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import Navigation from 'containers/Navigation';
 
 import classNames from 'classnames/bind';
 import styles from 'css/main';
@@ -18,12 +17,8 @@ const cx = classNames.bind(styles);
 export default class App extends Component {
   render() {
     return (
-      <div className={cx('app')}>
-      	<div className={cx('background')}>
-      		<h1>Welcome to Soren's Blog</h1>
-      	</div>
-      	<Navigation />
-        {this.props.children}
+      <div>
+      	<h1>Textbook UnderGround</h1>
       </div>
     );
   }
