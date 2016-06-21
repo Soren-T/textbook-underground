@@ -30,7 +30,7 @@ module.exports = function(app, passport) {
         failureFlash : true // allow flash messages
   }));
 
-	app.post('/api/v1/books', isLoggedIn, postController.create);
+	app.post('/api/v1/books',  postController.create);
 
 	app.get('/api/v1/books', postController.retrieveAll);
 

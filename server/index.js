@@ -6,7 +6,7 @@ var app = express();
 var mongoose = require('mongoose');
 var passport = require ('passport');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/sorenBlog');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://textbook:Clark@ds021034.mlab.com:21034/heroku_58qxs6t9');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

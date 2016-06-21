@@ -8,12 +8,13 @@ var bookSchema = new Schema({
 	ISBN: String,
 	price: String,
 	condition: String,
-	datePosted: {type: Date, default: Date.now},
+	slug: String,
 	//optional:
+	description: String,
 	photo: String, //URL
 	courseID: String,
 	subject: String,
-	slug: String,
+	
 });
 
 var Book = mongoose.model('book', bookSchema)

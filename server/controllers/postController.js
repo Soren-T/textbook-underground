@@ -4,9 +4,17 @@ function create(req, res){
 	var newBook = new Book({
 		title: req.body.title,
 		author: req.body.author,
-		body: req.body.body,
+		ISBN: req.body.ISBN,
+		price: req.body.price,
+		condition: req.body.condition,
 		slug: req.body.slug,
-	})
+		//optional:
+		description: req.body.description,
+		photo: req.body.photo, //URL
+		courseID: req.body.courseID,
+		subject: req.body.subject,
+		
+		})
 	newBook.save(function (err, book) {
 		if (err) return console.error(err);
 		res.writeHead(200, {'Content-Type': 'text/JSON'})
