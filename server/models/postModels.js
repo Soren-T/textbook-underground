@@ -1,15 +1,21 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var postSchema = new Schema({
+var bookSchema = new Schema({
+	//required:
 	title: String,
 	author: String,
-	body: String,
-	date: {type: Date, default: Date.now},
-	hidden: Boolean,
+	ISBN: String,
+	price: String,
+	condition: String,
+	datePosted: {type: Date, default: Date.now},
+	//optional:
+	photo: String, //URL
+	courseID: String,
+	subject: String,
 	slug: String,
 });
 
-var Post = mongoose.model('post', postSchema)
+var Book = mongoose.model('book', postSchema)
 
-module.exports = Post
+module.exports = Book

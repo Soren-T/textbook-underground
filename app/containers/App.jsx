@@ -18,7 +18,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-      	<h1>Textbook UnderGround</h1>
+      	<h1>Textbook Underground</h1>
       </div>
     );
   }

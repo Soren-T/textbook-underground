@@ -1,39 +1,39 @@
-var Post = require("../models/postModels")
+var Book = require("../models/postModels")
 
 function create(req, res){
-	var newPost = new Post({
+	var newBook = new Book({
 		title: req.body.title,
 		author: req.body.author,
 		body: req.body.body,
 		slug: req.body.slug,
 	})
-	newPost.save(function (err, post) {
+	newBook.save(function (err, book) {
 		if (err) return console.error(err);
 		res.writeHead(200, {'Content-Type': 'text/JSON'})
-		res.end(JSON.stringify(post))
+		res.end(JSON.stringify(book))
 	});
 }
 function retrieveAll(req, res){
-	Post.find(function (err, post) {
+	Book.find(function (err, book) {
 			if (err) return console.error(err);
-			console.log(post);
+			console.log(book);
 			console.log('recieved a GET request')
 			res.writeHead(200, {'Content-Type': 'text/JSON'})
-			res.end(JSON.stringify(post))
+			res.end(JSON.stringify(book))
 		})
 }
-//get post:slug
+//get Book:slug
 function retrieveOne(req, res){
-	Post.findOne({slug: req.params.slug},function (err, post) {
+	Book.findOne({slug: req.params.slug},function (err, book) {
 			if (err) return console.error(err);
-			console.log(post);
+			console.log(book);
 			console.log('recieved a GET request')
 			res.writeHead(200, {'Content-Type': 'text/JSON'})
-			res.end(JSON.stringify(post))
+			res.end(JSON.stringify(book))
 		})
 }
 function deletion(req, res){
-	Post.remove({
+	Book.remove({
 		slug: req.params.slug,
 		}, 
 		function (err, returnValue) {
@@ -47,7 +47,7 @@ function deletion(req, res){
 // PUT
 function change(req, res){
 	var query = { slug: req.params.slug};
-		Post.findOneAndUpdate(query, { 
+		Book.findOneAndUpdate(query, { 
 					title: req.body.title,
 					author: req.body.author,
 					body: req.body.body, 
