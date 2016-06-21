@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Navigation from 'containers/Navigation';
+import { Link } from 'react-router';
 
 import classNames from 'classnames/bind';
 import styles from 'css/main';
@@ -15,20 +15,14 @@ const cx = classNames.bind(styles);
  * A better explanation of react-router is available here:
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  */
-export default class App extends Component {
+export default class Navigation extends Component {
   render() {
     return (
-      <div className={cx('app')}>
-      	<div className={cx('background')}>
-      		<h1>Textbook Underground</h1>
-      	</div>
-      	<Navigation />
-        {this.props.children}
+      <div>
+        <Link to='/sellBook'>Sell Your Book</Link>
+        <br/>
+        <Link to='/'>Home</Link>
       </div>
     );
   }
-};
-
-App.propTypes = {
-  children: PropTypes.object
 };

@@ -2,6 +2,8 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from 'containers/App';
+import Home from 'containers/Home';
+import SellBook from 'containers/sellBook';
 
 /*
  * @param {Redux Store}
@@ -11,6 +13,8 @@ import App from 'containers/App';
 export default (store) => {
   return (
     <Route path="/" component={App}>
+    	<IndexRoute component={Home} />
+    	<Route path="sellBook" component={SellBook} />
     </Route>
   );
 };

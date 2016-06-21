@@ -30,15 +30,15 @@ module.exports = function(app, passport) {
         failureFlash : true // allow flash messages
   }));
 
-	app.post('/api/v1/posts', isLoggedIn, postController.create);
+	app.post('/api/v1/books', isLoggedIn, postController.create);
 
-	app.get('/api/v1/posts', postController.retrieveAll);
+	app.get('/api/v1/books', postController.retrieveAll);
 
-	app.get('/api/v1/posts/:slug', postController.retrieveOne);
+	app.get('/api/v1/books/:slug', postController.retrieveOne);
 
-	app.delete('/api/v1/posts/:slug', isLoggedIn, postController.deletion);
+	app.delete('/api/v1/books/:slug', isLoggedIn, postController.deletion);
 
-	app.put('/api/v1/posts/:slug', isLoggedIn, postController.change);
+	app.put('/api/v1/books/:slug', isLoggedIn, postController.change);
 
   app.get('*', function (req, res, next) {
     console.log(App)

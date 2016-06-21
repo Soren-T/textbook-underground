@@ -16,6 +16,6 @@ var bookSchema = new Schema({
 	slug: String,
 });
 
-var Book = mongoose.model('book', postSchema)
+var Book = mongoose.model('book', bookSchema)
 
 module.exports = Book
