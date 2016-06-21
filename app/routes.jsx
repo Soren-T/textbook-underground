@@ -11,7 +11,6 @@ import App from 'containers/App';
 export default (store) => {
   return (
     <Route path="/" component={App}>
-    	<IndexRoute component={App} />
     </Route>
   );
 };
