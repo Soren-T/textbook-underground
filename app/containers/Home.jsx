@@ -4,7 +4,10 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import styles from '../css/components/home';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
+var Collapse = require('rc-collapse');
+var Panel = Collapse.Panel;
+
 
 const cx = classNames.bind(styles);
 
@@ -51,10 +54,15 @@ export default class Home extends React.Component {
 		 				</div>))
 	}
 
+	displayBlogs(){
+		return this.state.posts.map((post, key)=>
+			(<Panel header={post.title}><p className={cx('collapseBody')}>{post.body}</p></Panel>)
+		)
+	}
+
   	render() {
 		return (
-		  <div>
-		    <h1>Welcome to Soren's Blog</h1>
+		  <div className={cx('body')}>
 		   	<input 
 		   		type="text"
 		   		name="search" 
@@ -64,14 +72,9 @@ export default class Home extends React.Component {
 		   		<br/>
 		   	{this.compare()}
 		   	<br/>
-		    <div>
-		    	{this.state.posts.map((post)=><div>
-		    	<h3 className={cx("blogTitles")}>Title: {(post.title)}</h3>
-		    	<h4 className={cx("blogAuthor")}>Written By: {(post.author)}</h4>
-		    	<p className={cx("blogBody")}>{(post.body)}</p>
-		    	<br/>
-		    	</div>)}
-		    </div>
+		   	<Collapse>
+		    		{this.displayBlogs()}
+		    </Collapse>
 		  </div>
 		);
   	}
@@ -83,9 +86,10 @@ class BlogItem extends React.Component{
 	render(){
 		var self = this
 		return (<div>
-			{(this.props.post.title)}<br/>
+			<h3>Title: {(this.props.post.title)}</h3>
 			<h4> - {(this.props.post.author)}</h4>
 			{(this.props.post.body)}<br/>
+			<br/>
 			<Link to={`/editor/${self.props.post.slug}`} className={cx('item')} activeClassName={cx('active')}>Edit Post</Link>
 			<br/>
 			</div>)

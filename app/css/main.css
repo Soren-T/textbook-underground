@@ -18,3 +18,8 @@ body {
   font-weight: normal;
   font-smoothing: antialiased;
 }
+/*.background {
+	background-image: url("https://scontent.xx.fbcdn.net/v/t1.0-9/6164_10154047367218185_6294813061921420777_n.jpg?oh=362833fb7defd485c092d8d2e448fd6e&oe=57DA07ED");
+	z-index: -1;
+	position: relative;
+}*/

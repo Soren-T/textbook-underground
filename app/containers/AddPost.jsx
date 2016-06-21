@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import styles from 'css/components/home';
+import styles from '../css/components/addPost';
 import 'whatwg-fetch';
 import { browserHistory } from 'react-router'
 
@@ -41,7 +41,7 @@ export default class AddPost extends React.Component {
 
   	render() {
 	    return (
-	      <div className={cx('home')}>
+	      <div className = {cx('body')} className={cx('home')}>
 	        <h1 className={cx('home__header')}>Add a Post</h1>
 	      		<p>Author</p> 
 	      			<input onChange={(e)=>this.setState({author:e.target.value})} />
