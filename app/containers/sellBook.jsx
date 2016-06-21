@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { browserHistory } from 'react-router'
+import { refreshLocation } from 'react-router'
 import 'whatwg-fetch';
+
 
 export default class SellBook extends React.Component {
   constructor(props){
@@ -26,7 +27,7 @@ export default class SellBook extends React.Component {
 		}).catch(function(ex) {
 			console.log('parsing failed', ex)
 		}).then(function() {
-			browserHistory.push('/sellBook')
+			window.location.reload()
 		})	
 	}
 
