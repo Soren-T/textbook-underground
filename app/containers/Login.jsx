@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
+
 
 
 
@@ -9,9 +11,9 @@ export default class Login extends React.Component {
     return (
       <div>
       	<h1>Login</h1>
-      		<input type='text' placeholder='email' />
-      		<input type='text' placeholder='password' />
-      		<button>Login</button>	      	
+      		<input type='text' onChange={(e)=>this.setState({email:e.target.value})} placeholder='email' />
+      		<input type='text' onChange={(e)=>this.setState({password:e.target.value})}placeholder='password' />
+      		<Link to='/SellerHomepage'> Login </Link>	      	
       </div> 
 
 

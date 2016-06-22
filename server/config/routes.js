@@ -17,16 +17,17 @@ module.exports = function(app, passport) {
   // fetched and seed our stores with data.
   // App is a function that requires store data and url to initialize and return the React-rendered html string
   app.post('/api/v1/login', passport.authenticate('local-login', {
-        successRedirect : '/', // redirect to the secure profile section
-        failureRedirect : '/', // redirect back to the signup page if there is an error
+        successRedirect : '/Login', // redirect to the secure profile section
+        failureRedirect : '/CreateAccount', // redirect back to the signup page if there is an error
+
         failureFlash : true // allow flash messages
   }));
 
   app.post('/api/v1/logout', authController.logout); 
 
   app.post('/api/v1/signup', passport.authenticate('local-signup', {
-        successRedirect : '/', // redirect to the secure profile section
-        failureRedirect : '/', // redirect back to the signup page if there is an error
+        // successRedirect : '/', // redirect to the secure profile section
+        // failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
   }));
 
