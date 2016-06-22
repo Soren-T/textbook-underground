@@ -37,7 +37,7 @@ export default class CreateAccount extends React.Component {
       	<h1>Create Account</h1>
       		<input type='text' onChange={(e)=>this.setState({email:e.target.value})} placeholder='email' />
       		<input type='text' onChange={(e)=>this.setState({password:e.target.value})} placeholder='password' />
-      		<Link to='/Login' onClick={this.createAccount.bind(this)}>Submit</Link><br/>
+      		<button onClick={this.createAccount.bind(this)}>Submit</button><br/>
       		<h3> Or </h3><br/>
       		<Link to='/Login'>Login</Link>	    
       </div> 

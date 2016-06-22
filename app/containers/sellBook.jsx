@@ -13,6 +13,7 @@ export default class SellBook extends React.Component {
 	submitPost(){
 		var self = this
 		fetch('/api/v1/books', {
+			credentials : 'same-origin',
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',

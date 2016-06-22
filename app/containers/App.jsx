@@ -16,14 +16,37 @@ const cx = classNames.bind(styles);
  * https://github.com/rackt/react-router/blob/latest/docs/Introduction.md
  */
 export default class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      
+    };
+  }
+  componentDidMount(){
+  var self = this
+  fetch('/api/v1/user',
+   {credentials: 'same-origin'})
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    self.setState(json)
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+  }
+
+  toggleLogin(){
+    this.setState({loggedIn:!this.state.loggedIn})
+  }
+
   render() {
     return (
       <div className={cx('app')}>
       	<div className={cx('background')}>
       		<h1>Textbook Underground</h1>
       	</div>
-      	<Navigation />
-        {this.props.children}
+      	<Navigation loggedIn={this.state.loggedIn} toggleLogin={this.toggleLogin.bind(this)}/>
+        {this.props.children && React.cloneElement(this.props.children,{toggleLogin:this.toggleLogin.bind(this)})} 
       </div>
     );
   }

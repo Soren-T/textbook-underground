@@ -17,17 +17,28 @@ module.exports = function(app, passport) {
   // fetched and seed our stores with data.
   // App is a function that requires store data and url to initialize and return the React-rendered html string
   app.post('/api/v1/login', passport.authenticate('local-login', {
-        successRedirect : '/Login', // redirect to the secure profile section
-        failureRedirect : '/CreateAccount', // redirect back to the signup page if there is an error
-
+        successRedirect : '/api/v1/login/success', // redirect to the secure profile section
+        failureRedirect : '/api/v1/login/failure', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
   }));
+
+  app.get('/api/v1/login/:result', function(req, res){
+    res.json({success: 'success' === req.params.result})
+  });
+
+  app.get('/api/v1/user', function(req, res){
+    if(req.isAuthenticated()){
+      res.json({user:req.user,loggedIn:true})
+    } else {
+      res.json({loggedIn: false})
+    }
+  })
 
   app.post('/api/v1/logout', authController.logout); 
 
   app.post('/api/v1/signup', passport.authenticate('local-signup', {
-        // successRedirect : '/', // redirect to the secure profile section
-        // failureRedirect : '/', // redirect back to the signup page if there is an error
+        successRedirect : '/', // redirect to the secure profile section
+        failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
   }));
 
