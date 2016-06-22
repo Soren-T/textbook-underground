@@ -4,6 +4,8 @@ import { Route, IndexRoute } from 'react-router';
 import App from 'containers/App';
 import Home from 'containers/Home';
 import SellBook from 'containers/sellBook';
+import CreateAccount from 'containers/CreateAccount';
+import Login from 'containers/Login';
 
 /*
  * @param {Redux Store}
@@ -15,6 +17,8 @@ export default (store) => {
     <Route path="/" component={App}>
     	<IndexRoute component={Home} />
     	<Route path="sellBook" component={SellBook} />
+    	<Route path="CreateAccount" component={CreateAccount} />
+    	<Route path='Login' component={Login} />
     </Route>
   );
 };

@@ -50,7 +50,7 @@ export default class SellBook extends React.Component {
       			<input type="radio" name="Condition" onClick={(e)=>this.setState({condition:'Fair'})}/> Fair<br/>
       			<input type="radio" name="Condition" onClick={(e)=>this.setState({condition:'Poor'})}/> Poor<br/>
       		<p>Description</p> 
-      			<textarea onChange={(e)=>this.setState({description:e.target.value})} /> 
+      			<textarea onChange={(e)=>this.setState({description:e.target.value})} /><br/> 
       		<button onClick = {this.submitPost.bind(this)}>Submit</button>
       </div> 
 

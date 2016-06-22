@@ -19,7 +19,7 @@ export default class Navigation extends Component {
   render() {
     return (
       <div>
-        <Link to='/sellBook'>Sell Your Book</Link>
+        <Link to='/CreateAccount'>Sell Your Book</Link>
         <br/>
         <Link to='/'>Home</Link>
       </div>
