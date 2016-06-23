@@ -10,6 +10,8 @@ var bookSchema = new Schema({
 	price: String,
 	condition: String,
 	slug: String,
+	date: { type: Date, default: Date.now },
+	//createdBy: {req.user.email}
 	//optional:
 	description: String,
 	photo: String, //URL
