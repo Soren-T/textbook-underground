@@ -7,10 +7,10 @@ export default class SellBook extends React.Component {
   constructor(props){
 		super(props);
 		this.state = {
-
 		};
 	}
 	submitPost(){
+		console.log(this.state.createdBy)
 		var self = this
 		fetch('/api/v1/books', {
 			credentials : 'same-origin',
@@ -53,10 +53,7 @@ export default class SellBook extends React.Component {
       		<p>Description</p> 
       			<textarea onChange={(e)=>this.setState({description:e.target.value})} /><br/> 
       		<button onClick = {this.submitPost.bind(this)}>Submit</button>
-      </div> 
-
-
-      		
+      </div>      		
     );
   }
 };

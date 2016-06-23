@@ -7,7 +7,7 @@ function create(req, res){
 		ISBN: req.body.ISBN,
 		price: req.body.price,
 		condition: req.body.condition,
-		slug: req.body.slug,
+		createdBy: req.user.local.email,
 		//optional:
 		description: req.body.description,
 		photo: req.body.photo, //URL
@@ -32,7 +32,16 @@ function retrieveAll(req, res){
 }
 //get Book:slug
 function retrieveOne(req, res){
-	Book.findOne({slug: req.params.slug},function (err, book) {
+	Book.findOne({_id: req.params._id},function (err, book) {
+			if (err) return console.error(err);
+			console.log(book);
+			console.log('recieved a GET request')
+			res.writeHead(200, {'Content-Type': 'text/JSON'})
+			res.end(JSON.stringify(book))
+		})
+}
+function retrieveBuyerBooks(req, res){
+	Book.find({createdBy: req.user.local.email},function (err, book) {
 			if (err) return console.error(err);
 			console.log(book);
 			console.log('recieved a GET request')
@@ -42,7 +51,7 @@ function retrieveOne(req, res){
 }
 function deletion(req, res){
 	Book.remove({
-		slug: req.params.slug,
+		_id: req.params._id,
 		}, 
 		function (err, returnValue) {
 			if (err) return console.error(err);
@@ -54,7 +63,7 @@ function deletion(req, res){
 }
 // PUT
 function change(req, res){
-	var query = { slug: req.params.slug};
+	var query = { _id: req.params._id};
 		Book.findOneAndUpdate(query, { 
 					title: req.body.title,
 					author: req.body.author,
@@ -71,6 +80,7 @@ function change(req, res){
 
 module.exports = {
 	create,
+	retrieveBuyerBooks,
 	retrieveAll,
 	retrieveOne,
 	deletion,

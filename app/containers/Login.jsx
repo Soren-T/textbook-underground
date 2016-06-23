@@ -10,6 +10,7 @@ export default class Login extends React.Component {
 
     };
   }
+
   login(){
     var self = this
     fetch('/api/v1/login', {
@@ -28,10 +29,10 @@ export default class Login extends React.Component {
       return response.json()
     }).then(function(json) {
       self.setState(json)
-      console.log(self.state.params)
       if(json.success){
         self.props.toggleLogin()
-        browserHistory.push('/SellerHomepage')
+        console.log('json', json)
+        browserHistory.push(`/SellerHomepage/`)  //${self.props.params.createdBy}`)
       } else {
         browserHistory.push('/Login')
       }

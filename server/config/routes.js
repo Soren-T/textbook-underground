@@ -46,11 +46,13 @@ module.exports = function(app, passport) {
 
 	app.get('/api/v1/books', postController.retrieveAll);
 
-	app.get('/api/v1/books/:slug', postController.retrieveOne);
+  app.get('/api/v1/books/user', isLoggedIn, postController.retrieveBuyerBooks);
 
-	app.delete('/api/v1/books/:slug', isLoggedIn, postController.deletion);
+	app.get('/api/v1/books/:_id', postController.retrieveOne);
 
-	app.put('/api/v1/books/:slug', isLoggedIn, postController.change);
+	app.delete('/api/v1/books/:_id', isLoggedIn, postController.deletion);
+
+	app.put('/api/v1/books/:_id', isLoggedIn, postController.change);
 
   app.get('*', function (req, res, next) {
     console.log(App)

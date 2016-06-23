@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import classNames from 'classnames/bind';
-import styles from 'css/main';
+import styles from 'css/components/navigation';
+
 
 const cx = classNames.bind(styles);
 
@@ -19,18 +20,20 @@ export default class Navigation extends Component {
 
   logStatus (){
   	if(this.props.loggedIn){
-  		return (<Link onClick={this.props.toggleLogin} to="/Login">Logout</Link>)
+  		return (<div>
+                <Link className={cx('item')} onClick={this.props.toggleLogin} to="/Login">Logout</Link>
+                <Link className={cx('item')} to={`/SellerHomepage/`}>My Account</Link>
+              </div>)
+
   	} else {
-  		return (<Link to="/Login">Login</Link>)
+  		return (<Link className={cx('item')} to="/Login">Login</Link>)
   	}
   }
   render() {
     return (
-      <div>
-        <Link to='/CreateAccount'>Sell Your Book</Link>
-        <br/>
-        <Link to='/'>Home</Link>
-        <br/>
+      <div className={cx('navigation')}>
+        <Link className={cx('item')} to='/CreateAccount'>Sell Your Book</Link>
+        <Link className={cx('item')} to='/'>Home</Link>
         {this.logStatus()}
       </div>
     );

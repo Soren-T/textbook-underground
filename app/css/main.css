@@ -9,6 +9,7 @@
 
 body {
   margin: 0;
+  background-color: #c8cfd6;
 }
 
 .app {
@@ -17,4 +18,7 @@ body {
   font-family: montserrat;
   font-weight: normal;
   font-smoothing: antialiased;
+}
+h1 {
+	text-align: center;
 }

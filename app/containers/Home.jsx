@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import classNames from 'classnames/bind';
-import styles from 'css/main';
+import styles from 'css/components/home';
 
 const cx = classNames.bind(styles);
 
@@ -20,8 +20,8 @@ export default class Home extends Component {
     super(props);
     this.state = {
     	books : [],
-    	text : ''
-
+    	text : '',
+    	_id: ''
     };
   }
 
@@ -50,12 +50,14 @@ export default class Home extends Component {
 		|| value.ISBN && value.ISBN.toLowerCase().startsWith(self.state.text.toLowerCase()))
 	.map((value) => 
 	 	(<li key= {value._id}>
-		 	<div>{value.title}</div>
-		 	<div>{value.author}</div> 
-		 	<div>{value.ISBN}</div> 
-		 	<div>{value.price}</div> 
-		 	<div>{value.condition}</div>
-		 	<div>{value.description}</div>
+	 		<Link className={cx('results')} to={`/buyBook/${value._id}`}>
+			 	<div >Title: {value.title}</div>
+			 	<div>Author: {value.author}</div> 
+			 	<div>ISBN: {value.ISBN}</div> 
+			 	<div>Price: {value.price}</div> 
+			 	<div>Condition: {value.condition}</div>
+			 	<div>Description: {value.description}</div> <br/>
+			 </Link>
 	    </li>))
   }
 
@@ -68,13 +70,14 @@ export default class Home extends Component {
       <div>
         <h1>Stick it to the Universe(ity)!</h1>
         <input 
+        	className={cx('searchBar')}
 	   		type="text"
 	   		name="search" 
 	   		value={this.state.text} 
 	   		onChange={(event) => {this.textChange(event)}} 
 	   		placeholder="Title, Author, ISBN" />
 	   		<br/>
-	   		<ul>{this.compare()}</ul>
+	   	<ul>{this.compare()}</ul>
       </div>
     );
   }
