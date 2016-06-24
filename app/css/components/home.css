@@ -3,9 +3,28 @@
     height: 50px;
 }
 .results {
-	text-decoration: none;
-	color: black;
-	font-size: 20px;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+.author {
+  color: grey;
+}
+.title {
+  font-size: 30px;
+  border-bottom: 1px grey solid;
+  margin-bottom: 10px;
+}
+.homeBody {
+	
+}
+.photo {
+  float: left;
+  max-width: 200px;
+  margin-right: 10px;
+}
+.photo img {
+  max-width: 200px;
 }
 
 input,

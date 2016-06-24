@@ -9,11 +9,12 @@ var bookSchema = new Schema({
 	ISBN: {type: String, required: true},
 	price: {type: String, required: true},
 	condition: {type: String, required: true},
+	photo: String,
+	description: String,
 	date: { type: Date, default: Date.now },
 	createdBy: {type: String, required: true},
 	//optional:
-	description: String,
-	photo: String, //URL
+	 
 	courseID: String,
 	subject: String,
 	

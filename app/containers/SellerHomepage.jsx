@@ -24,19 +24,20 @@ export default class SellerHomepage extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className={cx('body')}>
       	<h1>Seller Homepage</h1>
       		<Link className={cx('link')} to='/sellBook'>Add a new listing </Link><br/>
           <br/>
           <div>
           {this.state.books.map((book)=>(<div className={cx('buyerBookList')}>
-           <p>  {book.title} </p>
-           <p>  {book.author} </p>
-           <p>  {book.ISBN} </p>
-           <p>  {book.price} </p>
-           <p>  {book.condition} </p>
-           <p>  {book.description} </p>
-            <Link className={cx('link')} to={`/Editor/${book._id}`}>Edit Post</Link>
+           <div className={cx('photo')}><img src={book.photo}/> </div>
+           <div className={cx('title')}>  {book.title} </div>
+           <div className={cx('author')}>by {book.author} </div>
+           <div className={cx('ISBN')}>ISBN: {book.ISBN} </div>
+           <div className={cx('price')}>${book.price} </div>
+           <div className={cx('condition')}>Condition: {book.condition} </div>
+           <div className={cx('description')}>Description: <br/> {book.description} </div>
+           <Link className={cx('editLink')} to={`/Editor/${book._id}`}>Edit Post</Link>
             <br/>
           </div>))} 
         </div>

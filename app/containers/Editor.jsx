@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { browserHistory } from 'react-router';
+import classNames from 'classnames/bind';
+import styles from 'css/components/editor';
+
+const cx = classNames.bind(styles);
 
 export default class Editor extends React.Component {
   constructor(props){
@@ -71,7 +75,7 @@ export default class Editor extends React.Component {
   }
   render(){
     var self = this
-    return (<div>
+    return (<div className={cx('body')}>
       <h1>Edit Book</h1>
         <p>Title</p> 
           <input onChange={(e) => this.setState({title : e.target.value})} value={self.state.title} />
@@ -90,6 +94,8 @@ export default class Editor extends React.Component {
           <input type="radio" name="Condition" onClick={(e)=>this.setState({condition:'Poor'})}/> Poor<br/>
         <p>Description</p> 
           <textarea onChange={(e) => this.setState({description : e.target.value})}  value={self.state.description} />
+        <p>Photo</p>
+          <input placeholder="URL" onChange={(e)=>this.setState({photo: e.target.value})} />
         <p>
           <button onClick={this.submitPost.bind(this)}>Update</button>
           <button onClick={this.deletePost.bind(this)}>Delete</button>

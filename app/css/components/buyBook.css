@@ -1,0 +1,16 @@
+.buyBookBody {
+
+}
+.results {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+.author {
+  color: grey;
+}
+.title {
+  font-size: 30px;
+  border-bottom: 1px grey solid;
+  margin-bottom: 10px;
+}

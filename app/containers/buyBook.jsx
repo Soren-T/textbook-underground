@@ -1,5 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import classNames from 'classnames/bind';
+import styles from 'css/components/buyBook';
+
+
+const cx = classNames.bind(styles);
 
 export default class buyBook extends React.Component {
   constructor(props){
@@ -28,15 +33,15 @@ export default class buyBook extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className={cx('body')}>
       	<h1>Buy This Book:</h1>
-        <div>
-          {this.state.title} <br/>
-          {this.state.author} <br/>
-          {this.state.ISBN} <br/>
-          {this.state.price} <br/>
-          {this.state.condition} <br/>
-          {this.state.description} <br/>
+        <div className={cx('results')}>
+          <p className={cx('title')}>{this.state.title} </p>
+          <p className={cx('author')}>by {this.state.author} </p>
+          <p className={cx('ISBN')}>ISBN: {this.state.ISBN} </p>
+          <p className={cx('price')}>${this.state.price} </p>
+          <p className={cx('condition')}>Condition: {this.state.condition} </p>
+          <p className={cx('description')}>Description: <br/>{this.state.description} </p>
         </div>
       </div>
     );

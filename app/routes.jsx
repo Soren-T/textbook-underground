@@ -8,7 +8,7 @@ import CreateAccount from 'containers/CreateAccount';
 import Login from 'containers/Login';
 import SellerHomepage from 'containers/SellerHomepage';
 import buyBook from 'containers/buyBook';
-import Editor from 'containers/Editor'
+import Editor from 'containers/Editor';
 
 /*
  * @param {Redux Store}

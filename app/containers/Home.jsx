@@ -45,18 +45,19 @@ export default class Home extends Component {
 	}
 	//console.log(this.state.text,this.state.books)
 	return this.state.books
-	.filter((value) => value.title && value.title.toLowerCase().startsWith(self.state.text.toLowerCase())
-		|| value.author && value.author.toLowerCase().startsWith(self.state.text.toLowerCase()) 
-		|| value.ISBN && value.ISBN.toLowerCase().startsWith(self.state.text.toLowerCase()))
+	.filter((value) => value.title && value.title.toLowerCase().includes(self.state.text.toLowerCase())
+		|| value.author && value.author.toLowerCase().includes(self.state.text.toLowerCase()) 
+		|| value.ISBN && value.ISBN.toLowerCase().includes(self.state.text.toLowerCase()))
 	.map((value) => 
 	 	(<li key= {value._id}>
 	 		<Link className={cx('results')} to={`/buyBook/${value._id}`}>
-			 	<div >Title: {value.title}</div>
-			 	<div>Author: {value.author}</div> 
-			 	<div>ISBN: {value.ISBN}</div> 
-			 	<div>Price: {value.price}</div> 
-			 	<div>Condition: {value.condition}</div>
-			 	<div>Description: {value.description}</div> <br/>
+	 			<div className={cx('photo')}><img src={value.photo}/> </div>
+			 	<div className={cx('title')}>{value.title}</div>
+			 	<div className={cx('author')}>by {value.author}</div> 
+			 	<div className={cx('ISBN')}>ISBN: {value.ISBN}</div> 
+			 	<div className={cx('price')}>${value.price}</div> 
+			 	<div className={cx('condition')}>Condition: {value.condition}</div>
+			 	<div className={cx('description')}>Description: <br/>{value.description}</div> <br/>
 			 </Link>
 	    </li>))
   }
@@ -67,7 +68,7 @@ export default class Home extends Component {
   
   render() {
     return (
-      <div>
+      <div className={cx('body')}>
         <h1>Stick it to the Universe(ity)!</h1>
         <input 
         	className={cx('searchBar')}
