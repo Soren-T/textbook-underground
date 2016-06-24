@@ -22,3 +22,9 @@ body {
 h1 {
 	text-align: center;
 }
+button {
+	background-color: #8c1919;
+	color: #fff;
+	border: none;
+	font-size: 18px;
+}

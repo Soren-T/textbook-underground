@@ -1,0 +1,11 @@
+.inputBar {
+	margin: 15px;
+	border: 1px black solid;
+	padding: 10px;
+}
+.inputGroup {
+	text-align: center;
+}
+button {
+	text-align: center;
+}

@@ -2,6 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import 'whatwg-fetch';
 import {browserHistory} from 'react-router';
+import classNames from 'classnames/bind';
+import styles from 'css/components/loginCreateAccnt';
+
+
+const cx = classNames.bind(styles);
 
 export default class Login extends React.Component {
 	constructor(props){
@@ -45,9 +50,13 @@ export default class Login extends React.Component {
     return (
       <div>
       	<h1>Login</h1>
-      		<input type='text' onChange={(e)=>this.setState({email:e.target.value})} placeholder='email' />
-      		<input type='text' onChange={(e)=>this.setState({password:e.target.value})} placeholder='password' />
+        <div className={cx('inputGroup')}>
+      		<input className={cx('inputBar')} type='text' onChange={(e)=>this.setState({email:e.target.value})} placeholder='email' />
+          <br/>
+      		<input className={cx('inputBar')} type='text' onChange={(e)=>this.setState({password:e.target.value})} placeholder='password' />
+          <br/>
       		<button onClick={this.login.bind(this)}>Login</button>	      	
+      </div>
       </div>      		
     );
   }

@@ -20,10 +20,10 @@ export default class Navigation extends Component {
 
   logStatus (){
   	if(this.props.loggedIn){
-  		return (<div>
+  		return (<span>
                 <Link className={cx('item')} onClick={this.props.toggleLogin} to="/Login">Logout</Link>
                 <Link className={cx('item')} to={`/SellerHomepage/`}>My Account</Link>
-              </div>)
+              </span>)
 
   	} else {
   		return (<Link className={cx('item')} to="/Login">Login</Link>)
