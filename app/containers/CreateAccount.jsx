@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import 'whatwg-fetch';
 import classNames from 'classnames/bind';
 import styles from 'css/components/loginCreateAccnt';
+import { browserHistory } from 'react-router';
 
 const cx = classNames.bind(styles);
 
@@ -30,7 +31,9 @@ export default class CreateAccount extends React.Component {
 			console.log('parsed json', json)
 		}).catch(function(ex) {
 			console.log('parsing failed', ex)
-		})
+		}).then(function() {
+      		browserHistory.push('/Login')
+   		})    
 	}
 
 

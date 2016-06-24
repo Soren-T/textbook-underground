@@ -65,15 +65,23 @@ function deletion(req, res){
 function change(req, res){
 	var query = { _id: req.params._id};
 		Book.findOneAndUpdate(query, { 
-					title: req.body.title,
-					author: req.body.author,
-					body: req.body.body, 
-					}, 
-			function (err, returnValue) {
-				if (err) return console.error(err);
-				console.log(returnValue)
-				res.writeHead(200, {'Content-Type': 'text/JSON'})
-				res.end(JSON.stringify({success: true}))
+			title: req.body.title,
+			author: req.body.author,
+			ISBN: req.body.ISBN,
+			price: req.body.price,
+			condition: req.body.condition,
+			description: req.body.description,
+			createdBy: req.user.local.email,
+			//optional:
+			photo: req.body.photo, //URL
+			courseID: req.body.courseID,
+			subject: req.body.subject,
+		}, 
+		function (err, returnValue) {
+			if (err) return console.error(err);
+			console.log(returnValue)
+			res.writeHead(200, {'Content-Type': 'text/JSON'})
+			res.end(JSON.stringify({success: true}))
 		})
 		console.log('recieved a PUT request')
 }

@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import classNames from 'classnames/bind';
+import styles from 'css/components/SellerHomepage';
 
-
+const cx = classNames.bind(styles);
 
 export default class SellerHomepage extends React.Component {
   constructor(props){
@@ -21,23 +23,22 @@ export default class SellerHomepage extends React.Component {
     })
   }
   render() {
-    console.log('SSTEATE', this.state)
     return (
       <div>
       	<h1>Seller Homepage</h1>
-      		<Link to='/sellBook'>Add a new listing </Link><br/>
+      		<Link className={cx('link')} to='/sellBook'>Add a new listing </Link><br/>
           <br/>
           <div>
-          {this.state.books.map((book)=>(<div>
-            {book.title} <br/>
-            {book.author} <br/>
-            {book.ISBN} <br/>
-            {book.price} <br/>
-            {book.condition} <br/>
-            {book.description} <br/>
+          {this.state.books.map((book)=>(<div className={cx('buyerBookList')}>
+           <p>  {book.title} </p>
+           <p>  {book.author} </p>
+           <p>  {book.ISBN} </p>
+           <p>  {book.price} </p>
+           <p>  {book.condition} </p>
+           <p>  {book.description} </p>
+            <Link className={cx('link')} to={`/Editor/${book._id}`}>Edit Post</Link>
             <br/>
           </div>))} 
-
         </div>
       </div> 	
     );
