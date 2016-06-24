@@ -45,7 +45,7 @@ export default class CreateAccount extends React.Component {
       		<br/>
       		<button onClick={this.createAccount.bind(this)}>Submit</button><br/>
       		<h3> Or </h3><br/>
-      		<Link to='/Login'>Login</Link>
+      		<Link className={cx('link')} to='/Login'>Login</Link>
       	</div>	    
       </div> 
 

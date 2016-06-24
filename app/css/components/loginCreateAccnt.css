@@ -8,4 +8,15 @@
 }
 button {
 	text-align: center;
+	padding: 10px;
+	margin: 15px;
+}
+.link {
+	background-color: #8c1919;
+	color: #fff;
+	border: none;
+	font-size: 18px;
+	text-decoration: none;
+	padding: 10px;
+	margin: 15px;
 }

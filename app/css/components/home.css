@@ -12,7 +12,10 @@ input,
 input::-webkit-input-placeholder {
     font-size: 20px;
     line-height: 2;
-    padding: 10px;
+}
+input {
+	padding: 10px;
+    border: 1px black solid;
 }
 li {
 	list-style-type: none;
