@@ -53,7 +53,7 @@ export default class Login extends React.Component {
         <div className={cx('inputGroup')}>
       		<input className={cx('inputBar')} type='text' onChange={(e)=>this.setState({email:e.target.value})} placeholder='email' />
           <br/>
-      		<input className={cx('inputBar')} type='text' onChange={(e)=>this.setState({password:e.target.value})} placeholder='password' />
+      		<input className={cx('inputBar')} type='password' onChange={(e)=>this.setState({password:e.target.value})} placeholder='password' />
           <br/>
       		<button onClick={this.login.bind(this)}>Login</button>	      	
       </div>

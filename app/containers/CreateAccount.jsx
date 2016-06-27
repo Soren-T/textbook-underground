@@ -12,48 +12,58 @@ export default class CreateAccount extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-
+			testEmail: ""
 		};
 	}
 	createAccount(){
-		var self = this
-		fetch('/api/v1/signup', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(this.state)
-		})
-		.then(function(response) {
-			return response.json()
-		}).then(function(json) {
-			console.log('parsed json', json)
-		}).catch(function(ex) {
-			console.log('parsing failed', ex)
-		}).then(function() {
-      		browserHistory.push('/Login')
-   		})    
+		console.log(this.state.email + this.state.testEmail)
+		if(this.state.email !== this.state.testEmail){
+			alert("Your email entires do not match")
+		} 
+		if(!this.validateEmail(this.state.email)){
+			alert("Your email entry is not valid")
+		}
+		else {
+			var self = this
+			fetch('/api/v1/signup', {
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(this.state)
+			})
+			.then(function(response) {
+				return response.json()
+			}).then(function(json) {
+				console.log('parsed json', json)
+			}).catch(function(ex) {
+				console.log('parsing failed', ex)
+			}).then(function() {
+	      		browserHistory.push('/Login')
+	   		})
+   		}    
+	}
+	validateEmail(email){
+    	var filt = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    	return filt.test(email) 
 	}
 
-
-  render() {
-    return (
-      <div className={cx('body')}>
-      	<h1>Create Account</h1>
-      	<div className={cx('inputGroup')}>
-      		<input className={cx('inputBar')} type='text' onChange={(e)=>this.setState({email:e.target.value})} placeholder='email' />
-      		<br/>
-      		<input className={cx('inputBar')} type='text' onChange={(e)=>this.setState({password:e.target.value})} placeholder='password' />
-      		<br/>
-      		<button onClick={this.createAccount.bind(this)}>Submit</button><br/>
-      		<h3> Or </h3><br/>
-      		<Link className={cx('link')} to='/Login'>Login</Link>
-      	</div>	    
-      </div> 
-
-
-      		
-    );
-  }
+  	render() {
+	    return (
+	      <div className={cx('body')}>
+	      	<h1>Create Account</h1>
+	      	<div className={cx('inputGroup')}>
+	      		<input className={cx('inputBar')} type='text' onChange={(e)=>this.setState({testEmail:e.target.value})} placeholder='email' /><br/>
+	      		<input className={cx('inputBar')} type='text' onChange={(e)=>this.setState({email:e.target.value})} placeholder='verify email' />
+	      		<br/>
+	      		<input className={cx('inputBar')} type='password' onChange={(e)=>this.setState({password:e.target.value})} placeholder='password' />
+	      		<br/>
+	      		<button onClick={this.createAccount.bind(this)}>Submit</button><br/>
+	      		<h3> Or </h3><br/>
+	      		<Link className={cx('link')} to='/Login'>Login</Link>
+	      	</div>	    
+	      </div>	      		
+	    );
+  	}
 };
