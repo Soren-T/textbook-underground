@@ -12,15 +12,19 @@ export default class CreateAccount extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			testEmail: ""
+			testEmail: "",
+			testPass: ""
 		};
 	}
 	createAccount(){
 		console.log(this.state.email + this.state.testEmail)
 		if(this.state.email !== this.state.testEmail){
 			alert("Your email entires do not match")
+		}
+		else if(this.state.password !== this.state.testPass){
+			alert("Your password entires do not match")
 		} 
-		if(!this.validateEmail(this.state.email)){
+		else if(!this.validateEmail(this.state.email)){
 			alert("Your email entry is not valid")
 		}
 		else {
@@ -54,10 +58,13 @@ export default class CreateAccount extends React.Component {
 	      <div className={cx('body')}>
 	      	<h1>Create Account</h1>
 	      	<div className={cx('inputGroup')}>
-	      		<input className={cx('inputBar')} type='text' onChange={(e)=>this.setState({testEmail:e.target.value})} placeholder='email' /><br/>
+	      		<input className={cx('inputBar')} type='text' onChange={(e)=>this.setState({testEmail:e.target.value})} placeholder='email' />
+	      		<br/>
 	      		<input className={cx('inputBar')} type='text' onChange={(e)=>this.setState({email:e.target.value})} placeholder='verify email' />
 	      		<br/>
-	      		<input className={cx('inputBar')} type='password' onChange={(e)=>this.setState({password:e.target.value})} placeholder='password' />
+	      		<input className={cx('inputBar')} type='password' onChange={(e)=>this.setState({testPass:e.target.value})} placeholder='password' />
+	      		<br/>
+	      		<input className={cx('inputBar')} type='password' onChange={(e)=>this.setState({password:e.target.value})} placeholder='verify password' />
 	      		<br/>
 	      		<button onClick={this.createAccount.bind(this)}>Submit</button><br/>
 	      		<h3> Or </h3><br/>

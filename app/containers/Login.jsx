@@ -37,9 +37,10 @@ export default class Login extends React.Component {
       if(json.success){
         self.props.toggleLogin()
         console.log('json', json)
-        browserHistory.push(`/SellerHomepage/`)  //${self.props.params.createdBy}`)
+        browserHistory.push(`/SellerHomepage/`)
       } else {
-        browserHistory.push('/Login')
+        alert("Your email/password entry is incorrect")
+        browserHistory.push(`/Login/`)
       }
     }).catch(function(ex) {
       console.log('parsing failed', ex)
