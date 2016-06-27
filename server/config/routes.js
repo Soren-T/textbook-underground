@@ -6,7 +6,7 @@ var _ = require('lodash');
 var path = require('path');
 var postController = require("../controllers/postController");
 var authController = require("../controllers/authController");
-
+var isbnController = require("../controllers/isbnController")
 var App = require(path.resolve(__dirname, '../../', 'public', 'assets', 'server.js')).default
 
 module.exports = function(app, passport) {
@@ -47,6 +47,8 @@ module.exports = function(app, passport) {
 	app.get('/api/v1/books', postController.retrieveAll);
 
   app.get('/api/v1/books/user', isLoggedIn, postController.retrieveBuyerBooks);
+
+  app.get('/api/v1/books/ISBN/:isbn', isbnController.getIsbn);
 
 	app.get('/api/v1/books/:_id', postController.retrieveOne);
 

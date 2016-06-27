@@ -14,3 +14,14 @@
   border-bottom: 1px grey solid;
   margin-bottom: 10px;
 }
+.homeBody {
+	
+}
+.photo {
+  float: left;
+  max-width: 200px;
+  margin-right: 10px;
+}
+.photo img {
+  max-width: 200px;
+}

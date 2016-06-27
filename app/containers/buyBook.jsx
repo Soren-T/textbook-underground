@@ -36,6 +36,7 @@ export default class buyBook extends React.Component {
       <div className={cx('body')}>
       	<h1>Buy This Book:</h1>
         <div className={cx('results')}>
+          <p className={cx('photo')}><img src={this.state.photo}/> </p>
           <p className={cx('title')}>{this.state.title} </p>
           <p className={cx('author')}>by {this.state.author} </p>
           <p className={cx('ISBN')}>ISBN: {this.state.ISBN} </p>
