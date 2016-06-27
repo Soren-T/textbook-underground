@@ -37,19 +37,22 @@ export default class SellBook extends React.Component {
    		})   
 	}
   bookLookup(){
-    var self = this
-    fetch('/api/v1/books/ISBN/' + self.state.ISBN)
-    .then(function(response) {
-      return response.json()
-    }).then(function(json) {
-      var book = json
-      console.log(book)
-      self.setState({title: book.title})
-      self.setState({author: book.authors})
-      self.setState({photo: book.imageLinks.thumbnail})
-    }).catch(function(ex) {
-      console.log('parsing failed', ex)
-    })
+    if(!this.state.ISBN && (this.state.ISBN.length!==13 || this.state.ISBN.length!==10)){
+      alert('ISBN entry must be 10 or 13 digits')
+    } else {
+      var self = this
+      fetch('/api/v1/books/ISBN/' + self.state.ISBN)
+      .then(function(response) {
+        return response.json()
+      }).then(function(json) {
+        var book = json
+        self.setState({title: book.title})
+        self.setState({author: book.authors})
+        self.setState({photo: book.imageLinks.thumbnail})
+      }).catch(function(ex) {
+        console.log('parsing failed', ex)
+      })
+    }
   }
 
   render() {
@@ -57,7 +60,7 @@ export default class SellBook extends React.Component {
       <div className={cx('body')}>
       	<h1>Sell Your Book</h1>
 	      	<p>ISBN</p> 
-            <input placeholder= '9999999999999' onChange={(e)=>this.setState({ISBN:e.target.value})} />
+            <input type="number" placeholder= '9999999999999' onChange={(e)=>this.setState({ISBN:e.target.value})} />
           <button onClick = {this.bookLookup.bind(this)}>Lookup Book</button> 
           <p>Title</p> 
       			<input placeholder= 'Romeo and Juliet' value={this.state.title} />

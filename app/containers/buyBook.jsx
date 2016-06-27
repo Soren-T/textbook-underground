@@ -36,13 +36,13 @@ export default class buyBook extends React.Component {
       <div className={cx('body')}>
       	<h1>Buy This Book:</h1>
         <div className={cx('results')}>
-          <p className={cx('photo')}><img src={this.state.photo}/> </p>
-          <p className={cx('title')}>{this.state.title} </p>
-          <p className={cx('author')}>by {this.state.author} </p>
-          <p className={cx('ISBN')}>ISBN: {this.state.ISBN} </p>
-          <p className={cx('price')}>${this.state.price} </p>
-          <p className={cx('condition')}>Condition: {this.state.condition} </p>
-          <p className={cx('description')}>Description: <br/>{this.state.description} </p>
+          <div className={cx('photo')}><img src={this.state.photo}/> </div>
+          <div className={cx('title')}>{this.state.title} </div>
+          <div className={cx('author')}>by {this.state.author} </div>
+          <div className={cx('ISBN')}>ISBN: {this.state.ISBN} </div>
+          <div className={cx('price')}>${this.state.price} </div>
+          <div className={cx('condition')}>Condition: {this.state.condition} </div>
+          <div className={cx('description')}>Description: <br/>{this.state.description} </div>
         </div>
       </div>
     );
