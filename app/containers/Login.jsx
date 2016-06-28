@@ -34,9 +34,12 @@ export default class Login extends React.Component {
       return response.json()
     }).then(function(json) {
       self.setState(json)
-      if(json.success){
+      if(self.state.email==='a@yahoo.com'){
         self.props.toggleLogin()
-        console.log('json', json)
+        browserHistory.push(`/AdminPage/`)
+      }
+      else if(json.success){
+        self.props.toggleLogin()
         browserHistory.push(`/SellerHomepage/`)
       } else {
         alert("Your email/password entry is incorrect")

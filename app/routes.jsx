@@ -9,6 +9,7 @@ import Login from 'containers/Login';
 import SellerHomepage from 'containers/SellerHomepage';
 import buyBook from 'containers/buyBook';
 import Editor from 'containers/Editor';
+import AdminPage from 'containers/adminPage';
 
 /*
  * @param {Redux Store}
@@ -25,6 +26,7 @@ export default (store) => {
     	<Route path="SellerHomepage" component={SellerHomepage} />
     	<Route path="buyBook/:_id" component={buyBook} />
         <Route path="Editor/:_id" component={Editor} />
+        <Route path="AdminPage" component={AdminPage} />
     </Route>
   );
 };

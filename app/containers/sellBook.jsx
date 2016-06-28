@@ -15,7 +15,6 @@ export default class SellBook extends React.Component {
 		};
 	}
 	submitPost(){
-		console.log(this.state.createdBy)
 		var self = this
 		fetch('/api/v1/books', {
 			credentials : 'same-origin',
@@ -67,7 +66,7 @@ export default class SellBook extends React.Component {
       		<p>Author</p> 
       			<input placeholder= 'Shakespeare, William' value={this.state.author} />
       		<p>Price</p> 
-      			<input placeholder= '00.00' onChange={(e)=>this.setState({price:e.target.value})} />	
+      			<input type="number" placeholder= '00.00' onChange={(e)=>this.setState({price:e.target.value})} />	
       		<p>Condition</p>
       			<input type="radio" name="Condition" onClick={(e)=>this.setState({condition:'New'})}/> New<br/>
       			<input type="radio" name="Condition" onClick={(e)=>this.setState({condition:'Like-New'})}/> Like-New<br/>

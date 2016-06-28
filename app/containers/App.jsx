@@ -18,32 +18,39 @@ const cx = classNames.bind(styles);
 export default class App extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      
-    };
+    this.state = {};
   }
   componentDidMount(){
-  var self = this
-  fetch('/api/v1/user',
-   {credentials: 'same-origin'})
-  .then(function(response) {
-    return response.json()
-  }).then(function(json) {
-    self.setState(json)
-  }).catch(function(ex) {
-    console.log('parsing failed', ex)
-  })
+    this.getUserData()
+  }
+
+  getUserData(){
+    var self = this
+    fetch('/api/v1/user',
+     {credentials: 'same-origin'})
+    .then(function(response) {
+      return response.json()
+    }).then(function(json) {
+      self.setState(json)
+    }).catch(function(ex) {
+      console.log('parsing failed', ex)
+    })
   }
 
   toggleLogin(){
     this.setState({loggedIn:!this.state.loggedIn})
+    if(this.state.loggedIn){
+      this.getUserData()
+    } else {
+      this.setState({user: ''})
+    }
   }
 
   render() {
     return (
       <div className={cx('app')}>
       	<h1>Textbook Underground</h1>
-      	   <Navigation loggedIn={this.state.loggedIn} toggleLogin={this.toggleLogin.bind(this)}/>
+      	   <Navigation loggedIn={this.state.loggedIn} user={this.state.user} toggleLogin={this.toggleLogin.bind(this)}/>
            {this.props.children && React.cloneElement(this.props.children,{toggleLogin:this.toggleLogin.bind(this)})}
       </div>
     );

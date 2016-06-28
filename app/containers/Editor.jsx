@@ -21,7 +21,6 @@ export default class Editor extends React.Component {
   }
   componentWillMount(){
     var self = this
-    console.log(this.state.params)
     fetch('/api/v1/books/'+this.props.params._id)
     .then(function(response) {
       return response.json()

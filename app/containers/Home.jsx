@@ -32,7 +32,6 @@ export default class Home extends Component {
 		return response.json()
 	}).then(function(json) {
 		self.setState({books: json})
-		console.log(self.state.books)
 	}).catch(function(ex) {
 		console.log('parsing failed', ex)
 	})
@@ -43,7 +42,6 @@ export default class Home extends Component {
 	if(this.state.text===""){
 		return ""
 	}
-	//console.log(this.state.text,this.state.books)
 	return this.state.books
 	.filter((value) => value.title && value.title.toLowerCase().includes(self.state.text.toLowerCase())
 		|| value.author && value.author.toLowerCase().includes(self.state.text.toLowerCase()) 
@@ -51,7 +49,7 @@ export default class Home extends Component {
 	.map((value) => 
 	 	(<li key= {value._id}>
 	 		<Link className={cx('results')} to={`/buyBook/${value._id}`}>
-	 			<div className={cx('photo')}><img src={value.photo}/> </div>
+	 			<div className={cx('photo')}><img src={value.photo}/></div>
 			 	<div className={cx('title')}>{value.title}</div>
 			 	<div className={cx('author')}>by {value.author}</div> 
 			 	<div className={cx('ISBN')}>ISBN: {value.ISBN}</div> 

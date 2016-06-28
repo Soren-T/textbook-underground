@@ -5,14 +5,14 @@ import styles from 'css/components/SellerHomepage';
 
 const cx = classNames.bind(styles);
 
-export default class SellerHomepage extends React.Component {
+export default class AdminPage extends React.Component {
   constructor(props){
     super(props);
     this.state = {books:[]};
   }
   componentWillMount(){
     var self = this
-    fetch('/api/v1/books/user', {credentials: 'same-origin'})
+    fetch('/api/v1/books/')
     .then(function(response) {
       return response.json()
     }).then(function(json) {
@@ -21,11 +21,31 @@ export default class SellerHomepage extends React.Component {
       console.log('parsing failed', ex)
     })
   }
+
+   deletePost(){
+    console.log('DELETING POST', this.props.params._id)
+    var self = this
+    fetch('/api/v1/books/' + self.props.params._id, {
+      credentials: 'same-origin',
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }})
+    .then(function(response) {
+      return response.json()
+    }).then(function(json) {
+      console.log('parsed json', json)
+    }).catch(function(ex) {
+      console.log('parsing failed', ex)
+    }).then(function() {
+      browserHistory.push('/AdminPage')
+    })
+  }
   render() {
     return (
       <div className={cx('body')}>
-      	<h1>Seller Homepage</h1>
-      		<Link className={cx('link')} to='/sellBook'>Add a new listing </Link><br/>
+      	<h1>Admin Page</h1>
           <br/>
           <div>
           {this.state.books.map((book)=>(<div className={cx('buyerBookList')}>
@@ -36,7 +56,7 @@ export default class SellerHomepage extends React.Component {
            <div className={cx('price')}>${book.price} </div>
            <div className={cx('condition')}>Condition: {book.condition} </div>
            <div className={cx('description')}>Description: <br/> {book.description} </div>
-           <Link className={cx('editLink')} to={`/Editor/${book._id}`}>Edit Post</Link>
+           <button onClick={this.deletePost.bind(this)}>Delete</button>
             <br/>
           </div>))} 
         </div>
