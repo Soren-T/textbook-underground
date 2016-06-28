@@ -42,10 +42,11 @@ export default class Navigation extends Component {
   logStatus (){
     var self = this
   	if(this.props.loggedIn){
-        if(self.props.user.local.email==='a@yahoo.com'){
+        if(self.props.user.local.isAdmin){
           return (<span>
                 <Link className={cx('item')} onClick={this.logOut.bind(this)} to="/Login">Logout</Link>
-                <Link className={cx('item')} to={`/AdminPage/`}>Admin Page</Link>
+                <Link className={cx('item')} to={`/AdminPage/`}>Manage Listings</Link>
+                <Link className={cx('item')} to={`/ManageUsers/`}>Manage Users</Link>
               </span>)
         } else {
   		      return (<span>

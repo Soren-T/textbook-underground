@@ -1,3 +1,5 @@
+var User = require("../models/userModel")
+
 function login (req, res){
 	return res.json({message: "to be implemented"})
 }
@@ -6,7 +8,48 @@ function logout (req, res){
 	res.json({loggedOut: true})
 }
 
+function retrieveUsers (req, res){
+	User.find(function (err, user) {
+			if (err) return console.error(err);
+			console.log(user);
+			console.log('recieved a GET request')
+			res.writeHead(200, {'Content-Type': 'text/JSON'})
+			res.end(JSON.stringify(user))
+		})
+}
+function findUser (req, res){
+	User.findOne({
+		_id: req.params._id
+	}, function (err, user) {
+			if (err) return console.error(err);
+			console.log(user);
+			console.log('recieved a GET request')
+			res.writeHead(200, {'Content-Type': 'text/JSON'})
+			res.end(JSON.stringify(user))
+		})
+}
+function changeUser(req, res){
+	var query = {_id: req.params._id};
+		User.findOneAndUpdate(query, { 
+			local: {
+						email: req.body.email,
+						isAdmin: req.body.isAdmin,
+						isBlocked: req.body.isBlocked,
+					}
+		}, 
+		function (err, returnValue) {
+			if (err) return console.error(err);
+			console.log(returnValue)
+			res.writeHead(200, {'Content-Type': 'text/JSON'})
+			res.end(JSON.stringify({success: true}))
+		})
+		console.log('recieved a PUT request')
+}
+
 module.exports = {
 	login,
 	logout,
+	retrieveUsers,
+	changeUser,
+	findUser,
 }

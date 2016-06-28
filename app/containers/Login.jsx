@@ -27,14 +27,16 @@ export default class Login extends React.Component {
       },
       body: JSON.stringify({
         email : self.state.email,
-        password : self.state.password
+        password : self.state.password,
+        isAdmin : self.state.isAdmin
       })
     }) 
     .then(function(response) {
       return response.json()
     }).then(function(json) {
       self.setState(json)
-      if(self.state.email==='a@yahoo.com'){
+      console.log(self.state)
+      if(json.user.local.isAdmin){
         self.props.toggleLogin()
         browserHistory.push(`/AdminPage/`)
       }

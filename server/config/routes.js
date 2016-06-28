@@ -22,8 +22,14 @@ module.exports = function(app, passport) {
         failureFlash : true // allow flash messages
   }));
 
+  app.get('/api/v1/users', authController.retrieveUsers);
+
+  app.get('/api/v1/users/:_id', authController.findUser)
+
+  app.put('/api/v1/users/:_id', authController.changeUser)
+
   app.get('/api/v1/login/:result', function(req, res){
-    res.json({success: 'success' === req.params.result})
+    res.json({success: 'success' === req.params.result, user: req.user})
   });
 
   app.get('/api/v1/user', function(req, res){
