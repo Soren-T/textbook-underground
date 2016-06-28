@@ -2,13 +2,17 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import classNames from 'classnames/bind';
 import styles from 'css/components/SellerHomepage';
+import {browserHistory} from 'react-router';
 
 const cx = classNames.bind(styles);
 
 export default class AdminPage extends React.Component {
   constructor(props){
     super(props);
-    this.state = {books:[]};
+    this.state = {
+      books:[],
+      _id: ''
+    };
   }
   componentWillMount(){
     var self = this
@@ -22,10 +26,10 @@ export default class AdminPage extends React.Component {
     })
   }
 
-   deletePost(){
-    console.log('DELETING POST', this.props.params._id)
+   deletePost(id){
     var self = this
-    fetch('/api/v1/books/' + self.props.params._id, {
+    console.log(self.state)
+    fetch('/api/v1/books/' + id, {
       credentials: 'same-origin',
       method: 'DELETE',
       headers: {
@@ -39,7 +43,7 @@ export default class AdminPage extends React.Component {
     }).catch(function(ex) {
       console.log('parsing failed', ex)
     }).then(function() {
-      browserHistory.push('/AdminPage')
+      window.location.reload()
     })
   }
   render() {
@@ -56,7 +60,7 @@ export default class AdminPage extends React.Component {
            <div className={cx('price')}>${book.price} </div>
            <div className={cx('condition')}>Condition: {book.condition} </div>
            <div className={cx('description')}>Description: <br/> {book.description} </div>
-           <button onClick={this.deletePost.bind(this)}>Delete</button>
+           <button onClick={this.deletePost.bind(this, book._id)}>Delete</button>
             <br/>
           </div>))} 
         </div>

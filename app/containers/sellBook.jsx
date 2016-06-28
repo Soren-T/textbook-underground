@@ -59,14 +59,14 @@ export default class SellBook extends React.Component {
       <div className={cx('body')}>
       	<h1>Sell Your Book</h1>
 	      	<p>ISBN</p> 
-            <input type="number" placeholder= '9999999999999' onChange={(e)=>this.setState({ISBN:e.target.value})} />
+            <input className={cx('number')} type="number" placeholder= '9999999999999' onChange={(e)=>this.setState({ISBN:e.target.value})} />
           <button onClick = {this.bookLookup.bind(this)}>Lookup Book</button> 
           <p>Title</p> 
       			<input placeholder= 'Romeo and Juliet' value={this.state.title} />
       		<p>Author</p> 
       			<input placeholder= 'Shakespeare, William' value={this.state.author} />
       		<p>Price</p> 
-      			<input type="number" placeholder= '00.00' onChange={(e)=>this.setState({price:e.target.value})} />	
+      			<input className={cx('number')} type="number" placeholder= '00.00' onChange={(e)=>this.setState({price:e.target.value})} />	
       		<p>Condition</p>
       			<input type="radio" name="Condition" onClick={(e)=>this.setState({condition:'New'})}/> New<br/>
       			<input type="radio" name="Condition" onClick={(e)=>this.setState({condition:'Like-New'})}/> Like-New<br/>
