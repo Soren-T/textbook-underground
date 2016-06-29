@@ -74,7 +74,8 @@ export default class Editor extends React.Component {
   }
   render(){
     var self = this
-    return (<div className={cx('body')}>
+    return (
+      <div className={cx('body')}>
       <h1>Edit Book</h1>
         <p>Title</p> 
           <input onChange={(e) => this.setState({title : e.target.value})} value={self.state.title} />
@@ -99,6 +100,7 @@ export default class Editor extends React.Component {
           <button onClick={this.submitPost.bind(this)}>Update</button>
           <button onClick={this.deletePost.bind(this)}>Delete</button>
         </p>
-      </div>)
+      </div>
+      )
   }
 };

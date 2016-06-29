@@ -22,11 +22,15 @@ module.exports = function(app, passport) {
         failureFlash : true // allow flash messages
   }));
 
+  //USER routes
+
   app.get('/api/v1/users', authController.retrieveUsers);
 
   app.get('/api/v1/users/:_id', authController.findUser)
 
   app.put('/api/v1/users/:_id', authController.changeUser)
+
+  app.delete('/api/v1/users/:_id', authController.userDeletion)
 
   app.get('/api/v1/login/:result', function(req, res){
     res.json({success: 'success' === req.params.result, user: req.user})
@@ -47,6 +51,8 @@ module.exports = function(app, passport) {
         failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
   }));
+
+  //BOOK routes
 
 	app.post('/api/v1/books', isLoggedIn, postController.create);
 

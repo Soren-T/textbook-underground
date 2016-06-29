@@ -33,7 +33,6 @@ function changeUser(req, res){
 		User.findOneAndUpdate(query, { 
 			local: {
 						email: req.body.email,
-						isAdmin: req.body.isAdmin,
 						isBlocked: req.body.isBlocked,
 					}
 		}, 
@@ -45,6 +44,18 @@ function changeUser(req, res){
 		})
 		console.log('recieved a PUT request')
 }
+function userDeletion(req, res){
+	User.remove({
+		_id: req.params._id,
+		}, 
+		function (err, returnValue) {
+			if (err) return console.error(err);
+			console.log(returnValue)
+			res.writeHead(200, {'Content-Type': 'text/JSON'})
+			res.end(JSON.stringify({success: true}))
+		});
+		console.log('recieved a DELETE request')
+}
 
 module.exports = {
 	login,
@@ -52,4 +63,5 @@ module.exports = {
 	retrieveUsers,
 	changeUser,
 	findUser,
+	userDeletion,
 }
