@@ -5,7 +5,7 @@ function getIsbn(req, res){
 		if (err) {
 			console.log('Book not found', err);
 		} else {
-			console.log('Book found %j', book)
+			console.log('Book found %j')
 			res.json(book)
 		}
 	})

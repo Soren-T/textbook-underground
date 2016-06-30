@@ -28,24 +28,23 @@ export default class AdminPage extends React.Component {
 
    deletePost(id){
     var self = this
-    console.log(self.state)
-    fetch('/api/v1/books/' + id, {
-      credentials: 'same-origin',
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }})
-    .then(function(response) {
-      return response.json()
-    }).then(function(json) {
-      console.log('parsed json', json)
-    }).catch(function(ex) {
-      console.log('parsing failed', ex)
-    }).then(function() {
-      window.location.reload()
-    })
-  }
+    if(confirm('Are you sure you want to delete this book?')){
+        fetch('/api/v1/books/' + id, {
+          credentials: 'same-origin',
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }})
+        .then(function(response) {
+          return response.json()
+        }).catch(function(ex) {
+          console.log('parsing failed', ex)
+        }).then(function() {
+          window.location.reload()
+        })
+    }
+ }
   render() {
     return (
       <div className={cx('body')}>

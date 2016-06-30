@@ -43,11 +43,15 @@ export default class Home extends Component {
 		return ""
 	}
 	return this.state.books
-	.filter((value) => value.title && value.title.toLowerCase().includes(self.state.text.toLowerCase())
+	.filter((value) => 
+		 value.title && value.title.toLowerCase().includes(self.state.text.toLowerCase())
 		|| value.author && value.author.toLowerCase().includes(self.state.text.toLowerCase()) 
-		|| value.ISBN && value.ISBN.toLowerCase().includes(self.state.text.toLowerCase()))
+		|| value.ISBN && value.ISBN.toLowerCase().includes(self.state.text.toLowerCase())
+	)
 	.map((value) => 
-	 	(<li key= {value._id}>
+	 	(
+	 	<li key= {value._id}>
+	 		{value.hidden ? '' : 
 	 		<Link className={cx('results')} to={`/buyBook/${value._id}`}>
 	 			<div className={cx('photo')}><img src={value.photo}/></div>
 			 	<div className={cx('title')}>{value.title}</div>
@@ -57,7 +61,10 @@ export default class Home extends Component {
 			 	<div className={cx('condition')}>Condition: {value.condition}</div>
 			 	<div className={cx('description')}>Description: <br/>{value.description}</div> <br/>
 			 </Link>
-	    </li>))
+			}
+	    </li>
+	    )
+    )
   }
 
   textChange(event){

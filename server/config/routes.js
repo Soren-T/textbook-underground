@@ -2,12 +2,27 @@
  * Routes for express app
  */
 var express = require('express');
+//var router = express.Router();
 var _ = require('lodash');
 var path = require('path');
 var postController = require("../controllers/postController");
 var authController = require("../controllers/authController");
-var isbnController = require("../controllers/isbnController")
-var App = require(path.resolve(__dirname, '../../', 'public', 'assets', 'server.js')).default
+var isbnController = require("../controllers/isbnController");
+//var sendgrid = require('sendgrid')(tBookUnderground, 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);
+var App = require(path.resolve(__dirname, '../../', 'public', 'assets', 'server.js')).default;
+
+// router.get('/', function(req, res){
+//   sendgrid.send({
+//     to: 'sorenct04@gmail.com',
+//     from: 'pavement.ends.sales@gmail.com',
+//     subject: 'test',
+//     test: 'this is a test email',
+//   },function (err, json) {
+//     if(err) { return console.error(err);}
+//     console.log(json);
+//   });
+// });
+// module.exports = router;
 
 module.exports = function(app, passport) {
   // app.put('/myRoute', myController.handlerMethod);
@@ -54,11 +69,12 @@ module.exports = function(app, passport) {
 
   //BOOK routes
 
+
 	app.post('/api/v1/books', isLoggedIn, postController.create);
 
 	app.get('/api/v1/books', postController.retrieveAll);
 
-  app.get('/api/v1/books/user', isLoggedIn, postController.retrieveBuyerBooks);
+  app.get('/api/v1/books/user', postController.retrieveBuyerBooks);
 
   app.get('/api/v1/books/ISBN/:isbn', isbnController.getIsbn);
 
@@ -66,7 +82,11 @@ module.exports = function(app, passport) {
 
 	app.delete('/api/v1/books/:_id', isLoggedIn, postController.deletion);
 
+  app.delete('/api/v1/books/createdBy/:_id', isLoggedIn, postController.deleteByUser)
+
 	app.put('/api/v1/books/:_id', isLoggedIn, postController.change);
+
+  app.put('/api/v1/books/createdBy/:_id', postController.hideBook);
 
   app.get('*', function (req, res, next) {
     console.log(App)

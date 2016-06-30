@@ -35,8 +35,11 @@ export default class Login extends React.Component {
       return response.json()
     }).then(function(json) {
       self.setState(json)
-      console.log(self.state)
-      if(json.user.local.isAdmin){
+      if(json.user.local.isBlocked){
+        alert("Your account has been banned. Please contact Admin at: admin@admin.com")
+        browserHistory.push(`/Login/`)
+      }
+      else if(json.user.local.isAdmin){
         self.props.toggleLogin()
         browserHistory.push(`/AdminPage/`)
       }

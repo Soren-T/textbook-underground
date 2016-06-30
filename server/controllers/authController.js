@@ -30,19 +30,15 @@ function findUser (req, res){
 }
 function changeUser(req, res){
 	var query = {_id: req.params._id};
-		User.findOneAndUpdate(query, { 
-			local: {
-						email: req.body.email,
-						isBlocked: req.body.isBlocked,
-					}
-		}, 
-		function (err, returnValue) {
-			if (err) return console.error(err);
-			console.log(returnValue)
-			res.writeHead(200, {'Content-Type': 'text/JSON'})
-			res.end(JSON.stringify({success: true}))
-		})
-		console.log('recieved a PUT request')
+	console.log('Req.body', req.body)
+	User.findOneAndUpdate(query, {$set: req.body}, 
+	function (err, returnValue) {
+		if (err) return console.error(err);
+		console.log(returnValue)
+		res.writeHead(200, {'Content-Type': 'text/JSON'})
+		res.end(JSON.stringify({success: true}))
+	})
+	console.log('recieved a PUT request')
 }
 function userDeletion(req, res){
 	User.remove({

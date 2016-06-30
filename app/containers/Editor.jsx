@@ -43,8 +43,6 @@ export default class Editor extends React.Component {
     })
     .then(function(response) {
       return response.json()
-    }).then(function(json) {
-      console.log('parsed json', json)
     }).catch(function(ex) {
       console.log('parsing failed', ex)
     }).then(function() {
@@ -52,7 +50,6 @@ export default class Editor extends React.Component {
     })    
   }
   deletePost(){
-    console.log('DELETING POST', this.props.params._id)
     var self = this
     fetch('/api/v1/books/' + self.props.params._id, {
       credentials: 'same-origin',
@@ -63,8 +60,6 @@ export default class Editor extends React.Component {
       }})
     .then(function(response) {
       return response.json()
-    }).then(function(json) {
-      console.log('parsed json', json)
     }).catch(function(ex) {
       console.log('parsing failed', ex)
     }).then(function() {

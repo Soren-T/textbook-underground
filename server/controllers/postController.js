@@ -7,12 +7,14 @@ function create(req, res){
 		ISBN: req.body.ISBN,
 		price: req.body.price,
 		condition: req.body.condition,
-		createdBy: req.user.local.email,
+		createdBy: req.user._id,
+		hidden: false,
 		//optional:
 		description: req.body.description,
 		photo: req.body.photo, //URL
 		courseID: req.body.courseID,
 		subject: req.body.subject,
+
 		
 		})
 	newBook.save(function (err, book) {
@@ -24,7 +26,6 @@ function create(req, res){
 function retrieveAll(req, res){
 	Book.find(function (err, book) {
 			if (err) return console.error(err);
-			console.log(book);
 			console.log('recieved a GET request')
 			res.writeHead(200, {'Content-Type': 'text/JSON'})
 			res.end(JSON.stringify(book))
@@ -34,16 +35,15 @@ function retrieveAll(req, res){
 function retrieveOne(req, res){
 	Book.findOne({_id: req.params._id},function (err, book) {
 			if (err) return console.error(err);
-			console.log(book);
 			console.log('recieved a GET request')
 			res.writeHead(200, {'Content-Type': 'text/JSON'})
 			res.end(JSON.stringify(book))
 		})
 }
 function retrieveBuyerBooks(req, res){
-	Book.find({createdBy: req.user.local.email},function (err, book) {
+	Book.find({createdBy: req.user._id},function (err, book) {
 			if (err) return console.error(err);
-			console.log(book);
+			console.log('retrieveBuyerBooks');
 			console.log('recieved a GET request')
 			res.writeHead(200, {'Content-Type': 'text/JSON'})
 			res.end(JSON.stringify(book))
@@ -55,7 +55,17 @@ function deletion(req, res){
 		}, 
 		function (err, returnValue) {
 			if (err) return console.error(err);
-			console.log(returnValue)
+			console.log('deletion')
+			res.writeHead(200, {'Content-Type': 'text/JSON'})
+			res.end(JSON.stringify({success: true}))
+		});
+		console.log('recieved a DELETE request')
+}
+function deleteByUser(req, res){
+	Book.remove({createdBy: req.params._id}, 
+		function (err, returnValue) {
+			if (err) return console.error(err);
+			console.log('delete by user')
 			res.writeHead(200, {'Content-Type': 'text/JSON'})
 			res.end(JSON.stringify({success: true}))
 		});
@@ -72,6 +82,7 @@ function change(req, res){
 			condition: req.body.condition,
 			description: req.body.description,
 			createdBy: req.user.local.email,
+			hidden: false,
 			//optional:
 			photo: req.body.photo, //URL
 			courseID: req.body.courseID,
@@ -79,13 +90,25 @@ function change(req, res){
 		}, 
 		function (err, returnValue) {
 			if (err) return console.error(err);
-			console.log(returnValue)
+			console.log('changed')
 			res.writeHead(200, {'Content-Type': 'text/JSON'})
 			res.end(JSON.stringify({success: true}))
 		})
 		console.log('recieved a PUT request')
 }
 
+function hideBook(req, res){
+	var query = {createdBy: req.params._id};
+		Book.update(query,
+		 {$set: {hidden: req.body.hidden}}, 
+		function (err, returnValue) {
+			if (err) return console.error(err);
+			console.log('changed')
+			res.writeHead(200, {'Content-Type': 'text/JSON'})
+			res.end(JSON.stringify({success: true}))
+		})
+		console.log('recieved a PUT request')
+}
 module.exports = {
 	create,
 	retrieveBuyerBooks,
@@ -93,4 +116,6 @@ module.exports = {
 	retrieveOne,
 	deletion,
 	change,
+	deleteByUser,
+	hideBook,
 }

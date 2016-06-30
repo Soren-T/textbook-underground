@@ -17,7 +17,6 @@ export default class CreateAccount extends React.Component {
 		};
 	}
 	createAccount(){
-		console.log(this.state.email + this.state.testEmail)
 		if(this.state.email !== this.state.testEmail){
 			alert("Your email entires do not match")
 		}
@@ -39,8 +38,6 @@ export default class CreateAccount extends React.Component {
 			})
 			.then(function(response) {
 				return response.json()
-			}).then(function(json) {
-				console.log('parsed json', json)
 			}).catch(function(ex) {
 				console.log('parsing failed', ex)
 			}).then(function() {
