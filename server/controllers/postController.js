@@ -8,15 +8,15 @@ function create(req, res){
 		price: req.body.price,
 		condition: req.body.condition,
 		createdBy: req.user._id,
+		sellerEmail: req.user.local.email,
 		hidden: false,
 		//optional:
 		description: req.body.description,
 		photo: req.body.photo, //URL
 		courseID: req.body.courseID,
 		subject: req.body.subject,
-
-		
 		})
+
 	newBook.save(function (err, book) {
 		if (err) return console.error(err);
 		res.writeHead(200, {'Content-Type': 'text/JSON'})

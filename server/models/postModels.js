@@ -13,6 +13,7 @@ var bookSchema = new Schema({
 	description: String,
 	date: { type: Date, default: Date.now },
 	createdBy: {type: String, required: true},
+	sellerEmail: {type: String, required: true},
 	hidden: {type: Boolean, required: true},
 	//optional:
 	 

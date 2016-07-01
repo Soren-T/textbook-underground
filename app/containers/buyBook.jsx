@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import classNames from 'classnames/bind';
 import styles from 'css/components/buyBook';
-
+import SendEmail from './SendEmail';
 
 const cx = classNames.bind(styles);
 
@@ -31,16 +31,12 @@ export default class buyBook extends React.Component {
     })
   }
 
-  emailSeller(){
-    var self = this
-    fetch('/api/v1/sendanemail')
-    .then(function(response) {
-      return response.json()
-    }).then(function(json) {
-      self.setState(json)
-    }).catch(function(ex) {
-      console.log('parsing failed', ex)
-    })
+  display(){
+    return (
+      <div>
+        <SendEmail sellerEmail={this.state.sellerEmail} />
+      </div>
+    )
   }
 
   render() {
@@ -55,9 +51,7 @@ export default class buyBook extends React.Component {
           <div className={cx('price')}>${this.state.price} </div>
           <div className={cx('condition')}>Condition: {this.state.condition} </div>
           <div className={cx('description')}>Description: <br/>{this.state.description} </div>
-          <div>
-            <button onClick={this.emailSeller.bind(this)}>Email the Seller</button>
-          </div>
+          <div>{this.display()}</div>
         </div>
       </div>
     );

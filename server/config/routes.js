@@ -27,11 +27,12 @@ module.exports = function(app, passport) {
   
   //email
   
-  router.get('/sendanemail', function(req, res){
-    from_email = new helper.Email("test@example.com")
+  router.post('/sendanemail', function(req, res){
+    console.log('BOOODY', req.body)
+    from_email = new helper.Email(req.body.fromEmail)
     to_email = new helper.Email("sorenct04@gmail.com")
-    subject = "Hello World from the SendGrid Node.js Library"
-    content = new helper.Content("text/plain", "some text here")
+    subject = req.body.subject
+    content = new helper.Content("text/plain", req.body.content)
     mail = new helper.Mail(from_email, subject, to_email, content)
 
     var requestBody = mail.toJSON()
@@ -45,7 +46,6 @@ module.exports = function(app, passport) {
       console.log(response.headers)
     })
   });
-
   //USER routes
 
   router.post('/login', passport.authenticate('local-login', {

@@ -31,7 +31,7 @@ export default class SellBook extends React.Component {
 			console.log('parsing failed', ex)
 		}).then(function() {
       		browserHistory.push('/SellerHomepage')
-   		})   
+   	})   
 	}
   bookLookup(){
     if(!this.state.ISBN && (this.state.ISBN.length!==13 || this.state.ISBN.length!==10)){
