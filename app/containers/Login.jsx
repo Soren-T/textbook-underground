@@ -65,6 +65,8 @@ export default class Login extends React.Component {
       		<input className={cx('inputBar')} type='password' onChange={(e)=>this.setState({password:e.target.value})} placeholder='password' />
           <br/>
       		<button onClick={this.login.bind(this)}>Login</button>	      	
+          <h3> Or </h3><br/>
+          <Link className={cx('link')} to='/CreateAccount'>Create an Account</Link>
       </div>
       </div>      		
     );

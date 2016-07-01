@@ -99,8 +99,9 @@ function change(req, res){
 
 function hideBook(req, res){
 	var query = {createdBy: req.params._id};
-		Book.update(query,
-		 {$set: {hidden: req.body.hidden}}, 
+		Book.update(query,			
+		 {$set: {hidden: req.body.hidden}},
+		 {multi: true}, 
 		function (err, returnValue) {
 			if (err) return console.error(err);
 			console.log('changed')

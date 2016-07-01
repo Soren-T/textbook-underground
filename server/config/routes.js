@@ -2,27 +2,20 @@
  * Routes for express app
  */
 var express = require('express');
-//var router = express.Router();
 var _ = require('lodash');
 var path = require('path');
 var postController = require("../controllers/postController");
 var authController = require("../controllers/authController");
 var isbnController = require("../controllers/isbnController");
-//var sendgrid = require('sendgrid')(tBookUnderground, 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);
 var App = require(path.resolve(__dirname, '../../', 'public', 'assets', 'server.js')).default;
+var router = express.Router();
+var express = require('express');
+var router = express.Router();
+var mail  = require('sendgrid').mail
+var sendgrid = require('sendgrid').SendGrid("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");
+var helper = require('sendgrid').mail
 
-// router.get('/', function(req, res){
-//   sendgrid.send({
-//     to: 'sorenct04@gmail.com',
-//     from: 'pavement.ends.sales@gmail.com',
-//     subject: 'test',
-//     test: 'this is a test email',
-//   },function (err, json) {
-//     if(err) { return console.error(err);}
-//     console.log(json);
-//   });
-// });
-// module.exports = router;
+
 
 module.exports = function(app, passport) {
   // app.put('/myRoute', myController.handlerMethod);
@@ -31,27 +24,48 @@ module.exports = function(app, passport) {
   // This is where the magic happens. We take the locals data we have already
   // fetched and seed our stores with data.
   // App is a function that requires store data and url to initialize and return the React-rendered html string
-  app.post('/api/v1/login', passport.authenticate('local-login', {
+  
+  //email
+  
+  router.get('/sendanemail', function(req, res){
+    from_email = new helper.Email("test@example.com")
+    to_email = new helper.Email("sorenct04@gmail.com")
+    subject = "Hello World from the SendGrid Node.js Library"
+    content = new helper.Content("text/plain", "some text here")
+    mail = new helper.Mail(from_email, subject, to_email, content)
+
+    var requestBody = mail.toJSON()
+    var request = sendgrid.emptyRequest()
+    request.method = 'POST'
+    request.path = '/v3/mail/send'
+    request.body = requestBody
+    sendgrid.API(request, function (response) {
+      console.log(response.statusCode)
+      res.json(response.body)
+      console.log(response.headers)
+    })
+  });
+
+  //USER routes
+
+  router.post('/login', passport.authenticate('local-login', {
         successRedirect : '/api/v1/login/success', // redirect to the secure profile section
         failureRedirect : '/api/v1/login/failure', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
   }));
 
-  //USER routes
+  router.get('/users', authController.retrieveUsers);
 
-  app.get('/api/v1/users', authController.retrieveUsers);
+  router.route('/users/:_id')
+      .get(authController.findUser)
+      .put(authController.changeUser)
+      .delete(authController.userDeletion)
 
-  app.get('/api/v1/users/:_id', authController.findUser)
-
-  app.put('/api/v1/users/:_id', authController.changeUser)
-
-  app.delete('/api/v1/users/:_id', authController.userDeletion)
-
-  app.get('/api/v1/login/:result', function(req, res){
+  router.get('/login/:result', function(req, res){
     res.json({success: 'success' === req.params.result, user: req.user})
   });
 
-  app.get('/api/v1/user', function(req, res){
+  router.get('/user', function(req, res){
     if(req.isAuthenticated()){
       res.json({user:req.user,loggedIn:true})
     } else {
@@ -59,9 +73,9 @@ module.exports = function(app, passport) {
     }
   })
 
-  app.post('/api/v1/logout', authController.logout); 
+  router.post('/logout', authController.logout); 
 
-  app.post('/api/v1/signup', passport.authenticate('local-signup', {
+  router.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/', // redirect to the secure profile section
         failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
@@ -70,29 +84,30 @@ module.exports = function(app, passport) {
   //BOOK routes
 
 
-	app.post('/api/v1/books', isLoggedIn, postController.create);
+	router.post('/books', isLoggedIn, postController.create);
 
-	app.get('/api/v1/books', postController.retrieveAll);
+	router.get('/books', postController.retrieveAll);
 
-  app.get('/api/v1/books/user', postController.retrieveBuyerBooks);
+  router.get('/books/user', postController.retrieveBuyerBooks);
 
-  app.get('/api/v1/books/ISBN/:isbn', isbnController.getIsbn);
+  router.get('/books/ISBN/:isbn', isbnController.getIsbn);
 
-	app.get('/api/v1/books/:_id', postController.retrieveOne);
+	router.get('/books/:_id', postController.retrieveOne);
 
-	app.delete('/api/v1/books/:_id', isLoggedIn, postController.deletion);
+	router.delete('/books/:_id', isLoggedIn, postController.deletion);
 
-  app.delete('/api/v1/books/createdBy/:_id', isLoggedIn, postController.deleteByUser)
+  router.delete('/books/createdBy/:_id', isLoggedIn, postController.deleteByUser)
 
-	app.put('/api/v1/books/:_id', isLoggedIn, postController.change);
+	router.put('/books/:_id', isLoggedIn, postController.change);
 
-  app.put('/api/v1/books/createdBy/:_id', postController.hideBook);
+  router.put('/books/createdBy/:_id', postController.hideBook);
+
+  app.use('/api/v1', router)
 
   app.get('*', function (req, res, next) {
     console.log(App)
     	App(req, res);
   });
-
 };
 
 function isLoggedIn(req, res, next) {
