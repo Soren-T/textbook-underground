@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import classNames from 'classnames/bind';
 import styles from 'css/components/buyBook';
-import Mailto from 'react-mailto';
+
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +18,7 @@ export default class buyBook extends React.Component {
       description: ''
     };
   }
+
   componentWillMount(){
     var self = this
     fetch('/api/v1/books/'+this.props.params._id)
@@ -29,6 +30,19 @@ export default class buyBook extends React.Component {
       console.log('parsing failed', ex)
     })
   }
+
+  emailSeller(){
+    var self = this
+    fetch('/api/v1/sendanemail')
+    .then(function(response) {
+      return response.json()
+    }).then(function(json) {
+      self.setState(json)
+    }).catch(function(ex) {
+      console.log('parsing failed', ex)
+    })
+  }
+
   render() {
     return (
       <div className={cx('body')}>
@@ -42,9 +56,7 @@ export default class buyBook extends React.Component {
           <div className={cx('condition')}>Condition: {this.state.condition} </div>
           <div className={cx('description')}>Description: <br/>{this.state.description} </div>
           <div>
-            <Mailto email={this.state.createdBy} obfuscate={true}>
-              email seller
-            </Mailto>
+            <button onClick={this.emailSeller.bind(this)}>Email the Seller</button>
           </div>
         </div>
       </div>

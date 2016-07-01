@@ -25,12 +25,14 @@ export default class App extends Component {
   }
 
   getUserData(){
+    console.log('sklag;fhjlksfgdhj;sfldhkg;lksdfjg;lksdjfg;lksfdjkg;lksdfjg;lksfdjfgfkl;')
     var self = this
     fetch('/api/v1/user',
      {credentials: 'same-origin'})
     .then(function(response) {
       return response.json()
     }).then(function(json) {
+      console.log('USSSSSER ', json)
       self.setState(json)
     }).catch(function(ex) {
       console.log('parsing failed', ex)

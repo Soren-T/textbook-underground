@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 import classNames from 'classnames/bind';
 import styles from 'css/components/navigation';
-
+import _ from 'lodash';
 
 const cx = classNames.bind(styles);
 
@@ -42,7 +42,7 @@ export default class Navigation extends Component {
   logStatus (){
     var self = this
   	if(this.props.loggedIn){
-        if(self.props.user.local.isAdmin){
+        if(_.get(self.props, 'user.local.isAdmin', false)){
           return (<span>
                 <Link className={cx('item')} onClick={this.logOut.bind(this)} to="/Login">Logout</Link>
                 <Link className={cx('item')} to={`/AdminPage/`}>Manage Listings</Link>
