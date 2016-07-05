@@ -74,20 +74,21 @@ function deleteByUser(req, res){
 // PUT
 function change(req, res){
 	var query = { _id: req.params._id};
-		Book.findOneAndUpdate(query, { 
+		Book.findOneAndUpdate(query, {
 			title: req.body.title,
 			author: req.body.author,
 			ISBN: req.body.ISBN,
 			price: req.body.price,
 			condition: req.body.condition,
-			description: req.body.description,
-			createdBy: req.user.local.email,
+			createdBy: req.user._id,
+			sellerEmail: req.user.local.email,
 			hidden: false,
 			//optional:
+			description: req.body.description,
 			photo: req.body.photo, //URL
 			courseID: req.body.courseID,
 			subject: req.body.subject,
-		}, 
+			},
 		function (err, returnValue) {
 			if (err) return console.error(err);
 			console.log('changed')

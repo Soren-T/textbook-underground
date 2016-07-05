@@ -28,7 +28,6 @@ module.exports = function(app, passport) {
   //email
   
   router.post('/sendanemail', function(req, res){
-    console.log('BOOODY', req.body)
     from_email = new helper.Email(req.body.fromEmail)
     to_email = new helper.Email("sorenct04@gmail.com")
     subject = req.body.subject
