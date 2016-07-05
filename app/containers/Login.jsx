@@ -28,29 +28,29 @@ export default class Login extends React.Component {
       body: JSON.stringify({
         email : self.state.email,
         password : self.state.password,
-        isAdmin : self.state.isAdmin
+        isAdmin : self.state.isAdmin,
+        isBlocked : self.state.isBlocked,
       })
-    }) 
-    .then(function(response) {
+    }).then(function(response) {
       return response.json()
     }).then(function(json) {
       self.setState(json)
-      if(json.user.local.isBlocked){
-        alert("Your account has been banned. Please contact Admin at: admin@admin.com")
-        browserHistory.push(`/Login/`)
-      }
-      else if(json.user.local.isAdmin){
+      if(json.user.local.isAdmin){
+        console.log('hey admin')
         self.props.toggleLogin()
         browserHistory.push(`/AdminPage/`)
+      }
+      else if(json.user.local.isBlocked){
+        alert("Your account has been banned. Please contact Admin at: admin@admin.com")
+        browserHistory.push(`/Login/`)
       }
       else if(json.success){
         self.props.toggleLogin()
         browserHistory.push(`/SellerHomepage/`)
-      } else {
-        alert("Your email/password entry is incorrect")
-        browserHistory.push(`/Login/`)
       }
     }).catch(function(ex) {
+      alert("Your email/password entry is incorrect")
+      browserHistory.push(`/Login/`)
       console.log('parsing failed', ex)
     })
   }
