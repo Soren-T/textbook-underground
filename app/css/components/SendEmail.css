@@ -1,0 +1,13 @@
+.content {
+  width: 50%;
+  height: 150px;
+  font-size: 18px;
+  padding: 10px;
+  font-size: 24px;
+  border: 1px solid black;
+}
+.emailInputs {
+	width: 50%;
+	padding: 2px;
+	padding-left: 10px;
+}

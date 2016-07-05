@@ -44,7 +44,6 @@ export default class User extends React.Component{
     .then(function(response) {
       return response.json()
     }).then(function(json) {
-      console.log('parsed json', json)
       self.props.refreshUsers()
     }).catch(function(ex) {
       console.log('parsing failed', ex)
@@ -108,7 +107,7 @@ export default class User extends React.Component{
       <div className={cx('isBlocked')}> Block User</div>
       <div>Current status: {this.props.isBlocked.toString()}</div>
       <input type='hidden' ref='email' value={this.props.email}  /> <br/>
-      <button ref='isBlocked' value={this.props.isBlocked} onClick={() => this.changeBlockStatus(!this.props.isBlocked, true)}>{this.props.isBlocked ? 'Unblock User' : 'Block User'}  </button>
+      <button ref='isBlocked' value={this.props.isBlocked} onClick={this.blockUser.bind(this, !this.props.isBlocked, !this.props.isBlocked)}>{this.props.isBlocked ? 'Unblock User' : 'Block User'}  </button>
       <button onClick={this.deleteUser.bind(this, this.props.id)}>Delete User</button>
       <br/>
     </div>)

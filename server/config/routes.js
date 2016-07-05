@@ -29,7 +29,7 @@ module.exports = function(app, passport) {
   
   router.post('/sendanemail', function(req, res){
     from_email = new helper.Email(req.body.fromEmail)
-    to_email = new helper.Email("sorenct04@gmail.com")
+    to_email = new helper.Email(req.body.sellerEmail)
     subject = req.body.subject
     content = new helper.Content("text/plain", req.body.content)
     mail = new helper.Mail(from_email, subject, to_email, content)

@@ -4,6 +4,7 @@ import 'whatwg-fetch';
 import { browserHistory } from 'react-router';
 import classNames from 'classnames/bind';
 import styles from 'css/components/sellBook';
+import _ from 'lodash';
 
 const cx = classNames.bind(styles);
 
@@ -14,27 +15,59 @@ export default class SellBook extends React.Component {
 		this.state = {
 		};
 	}
-	submitPost(){
-		var self = this
-		fetch('/api/v1/books', {
-			credentials : 'same-origin',
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(this.state)
-		})
-		.then(function(response) {
-			return response.json()
-		}).catch(function(ex) {
-			console.log('parsing failed', ex)
-		}).then(function() {
-      		browserHistory.push('/SellerHomepage')
-   	})   
+  submitPost(){
+    fetch('/api/v1/books', {
+    credentials : 'same-origin',
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+      body: JSON.stringify(this.state)
+    }).then(function(response) {
+      return response.json()
+    }).catch(function(ex) {
+      console.log('parsing failed', ex)
+    }).then(function() {
+      browserHistory.push('/SellerHomepage')
+    })
+  }
+	checkField(){
+    var self = this
+    if(this.missField()){
+      this.submitPost()
+    } 
 	}
+  missField(){
+    var valid = true
+    if(!this.state.ISBN){
+      alert("You are missing the ISBN")
+      valid = false
+    } 
+    if(!this.state.title){
+      alert("You are missing the title")
+      valid = false
+    }
+    if(!this.state.author){
+      alert("You are missing the author")
+      valid = false
+    }
+    if(!this.state.price){
+      alert("You are missing the price")
+      valid = false
+    } 
+    if(!this.state.condition){
+      alert("You are missing the condition")
+      valid = false
+    }
+    if(!this.state.description){
+      alert("You are missing the description")
+      valid = false
+    }
+    return valid
+  }
   bookLookup(){
-    if(!this.state.ISBN && (this.state.ISBN.length!==13 || this.state.ISBN.length!==10)){
+    if(!this.state.ISBN || (this.state.ISBN.length!==13 && this.state.ISBN.length!==10)){
       alert('ISBN entry must be 10 or 13 digits')
     } else {
       var self = this
@@ -75,7 +108,7 @@ export default class SellBook extends React.Component {
       			<textarea className={cx('inputTextArea')} placeholder= 'This is a really great book. It was used in Theater 101, and it has a slightly worn cover.' onChange={(e)=>this.setState({description:e.target.value})} /><br/> 
           <p>Photo</p>
             <input placeholder="URL" value={this.state.photo} />
-      		<button onClick = {this.submitPost.bind(this)}>Submit</button>
+      		<button onClick = {this.checkField.bind(this)}>Submit</button>
       </div>      		
     );
   }

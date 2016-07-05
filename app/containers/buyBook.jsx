@@ -15,7 +15,8 @@ export default class buyBook extends React.Component {
       ISBN: '',
       price: '',
       condition: '',
-      description: ''
+      description: '',
+      sellerEmail: ''
     };
   }
 
@@ -45,8 +46,8 @@ export default class buyBook extends React.Component {
       	<h1>Buy This Book:</h1>
         <div className={cx('results')}>
           <div className={cx('photo')}><img src={this.state.photo}/> </div>
-          <div className={cx('title')}>{this.state.title} </div>
-          <div className={cx('author')}>by {this.state.author} </div>
+          <div className={cx('title')}>{this.state.title}</div>
+          <div className={cx('author')}>by {this.state.author}</div>
           <div className={cx('ISBN')}>ISBN: {this.state.ISBN} </div>
           <div className={cx('price')}>${this.state.price} </div>
           <div className={cx('condition')}>Condition: {this.state.condition} </div>

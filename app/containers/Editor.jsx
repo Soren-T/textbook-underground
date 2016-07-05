@@ -67,6 +67,11 @@ export default class Editor extends React.Component {
     })
 
   }
+  confirmDelete(){
+    if(confirm("Are you sure you want to delete your book posting?")){
+      this.deletePost()
+    }
+  }
   render(){
     var self = this
     return (
@@ -93,7 +98,7 @@ export default class Editor extends React.Component {
           <input placeholder="URL" onChange={(e)=>this.setState({photo: e.target.value})} />
         <p>
           <button onClick={this.submitPost.bind(this)}>Update</button>
-          <button onClick={this.deletePost.bind(this)}>Delete</button>
+          <button onClick={this.confirmDelete.bind(this)}>Delete</button>
         </p>
       </div>
       )
