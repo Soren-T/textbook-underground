@@ -15,25 +15,37 @@ export default class SendEmail extends React.Component {
     	};
   	}
 
-  	emailData(){
-  		var self = this
-  		var emailData = _.assignIn({},this.state, this.props)
-  		console.log('Props', this.props)
-  		console.log('Email Data', emailData)
+	emailData(){
+    var self = this
+    var emailData = _.assignIn({},this.state, this.props)
+    if(!this.validateEmail(this.state.fromEmail)){
+      alert("Your email entry is not valid.")
+    }
+    else if(!this.state.subject || !this.state.content) {
+      alert("Please complete the required fields (subject and content).")
+    } else {
   		fetch('/api/v1/sendanemail', {
-		credentials : 'same-origin',
-		method: 'POST',
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
-		},
+    	credentials : 'same-origin',
+    	method: 'POST',
+    	headers: {
+    		'Accept': 'application/json',
+    		'Content-Type': 'application/json'
+    	},
   		body: JSON.stringify(emailData)
   		}).then(function(response) {
   			return response.json()
   		}).catch(function(ex) {
   			console.log('parsing failed', ex)
   		})
+      alert("Your email has been sent!")
   	}
+  }
+
+  validateEmail(email){
+        var filt = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return filt.test(email) 
+    }
+
 	render(){
         return( 
         	<div>

@@ -67,6 +67,14 @@ export default class Home extends Component {
     )
   }
 
+  noResults(){
+  	var resultsArray = this.compare()
+  	if(resultsArray.length===0){
+  		return (
+  			<div>Sorry, no books match your search.</div>)
+  	}
+  }
+
   textChange(event){
     this.setState({text: event.target.value})
   }
@@ -84,6 +92,7 @@ export default class Home extends Component {
 	   		placeholder="Title, Author, ISBN" />
 	   		<br/>
 	   	<ul>{this.compare()}</ul>
+	   	<div>{this.noResults()}</div>
       </div>
     );
   }

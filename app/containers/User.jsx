@@ -95,11 +95,16 @@ export default class User extends React.Component{
   }
 
   blockUser(isBlocked, hidden){
-    if(confirm('Are you sure you want to block this user?\nAll of their listings will be hidden.')){
-      this.changeBlockStatus(isBlocked)
-      this.hideBook(hidden)
-    }
-  }
+    if(isBlocked){
+      if(confirm('Are you sure you want to block this user?\nAll of their listings will be hidden.')){
+        this.changeBlockStatus(isBlocked)
+        this.hideBook(hidden)
+      }
+    } else{
+        this.changeBlockStatus(isBlocked)
+        this.hideBook(hidden)
+      }
+  } 
    
   render(){
     return (<div className={cx('buyerBookList')}>
