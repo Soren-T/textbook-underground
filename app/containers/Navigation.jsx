@@ -58,11 +58,18 @@ export default class Navigation extends Component {
   		return (<Link className={cx('item')} to="/Login">Login</Link>)
   	}
   }
+  sellBookLink(){
+    if(this.props.loggedIn){
+      return (<Link className={cx('item')} to='/sellBook'>Sell Your Books</Link>)
+    } else {
+      return (<Link className={cx('item')} to='/CreateAccount'>Sell Your Books</Link>)
+    }
+  }
   render() {
     return (
       <div className={cx('navigation')}>
-        <Link className={cx('item')} to='/CreateAccount'>Sell Your Book</Link>
-        <Link className={cx('item')} to='/'>Home</Link>
+        {this.sellBookLink()}
+        <Link className={cx('item')} to='/'>Buy Books</Link>
         {this.logStatus()}
       </div>
     );

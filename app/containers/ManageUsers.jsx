@@ -38,7 +38,7 @@ export default class ManageUsers extends React.Component {
 
   render() {
     return (
-      <div className={cx('body')}>
+      <div className={cx('manageUsersBody')}>
       	<h1>Manage Users</h1>
           <br/>
           <div>

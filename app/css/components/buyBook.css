@@ -1,5 +1,6 @@
 .buyBookBody {
-
+  background-color: rgba(211, 211, 211, 0.3);
+  padding: 15px;
 }
 .results {
   text-decoration: none;
@@ -7,11 +8,11 @@
   font-size: 18px;
 }
 .author {
-  color: grey;
+  
 }
 .title {
   font-size: 30px;
-  border-bottom: 1px grey solid;
+  border-bottom: 1px black solid;
   margin-bottom: 10px;
 }
 .homeBody {

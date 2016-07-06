@@ -57,7 +57,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <div className={cx('body')}>
+      <div className={cx('loginBody')}>
       	<h1>Login</h1>
         <div className={cx('inputGroup')}>
       		<input className={cx('inputBar')} type='text' onChange={(e)=>this.setState({email:e.target.value})} placeholder='email' />

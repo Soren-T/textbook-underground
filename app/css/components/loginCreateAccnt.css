@@ -1,5 +1,10 @@
-.loginCreateBody {
-	
+.loginBody {
+	background-color: rgba(211, 211, 211, 0.3);
+  	padding: 30px;
+}
+.createAccountBody {
+	background-color: rgba(211, 211, 211, 0.3);
+  	padding: 30px;
 }
 .inputBar {
 	margin: 15px;

@@ -75,7 +75,7 @@ export default class Editor extends React.Component {
   render(){
     var self = this
     return (
-      <div className={cx('body')}>
+      <div className={cx('editorBody')}>
       <h1>Edit Book</h1>
         <p>Title</p> 
           <input onChange={(e) => this.setState({title : e.target.value})} value={self.state.title} />

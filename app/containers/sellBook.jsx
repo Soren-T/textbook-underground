@@ -72,6 +72,7 @@ export default class SellBook extends React.Component {
     return valid
   }
   bookLookup(){
+    this.state.errorMessages = []
     if(!this.state.ISBN || (this.state.ISBN.length!==13 && this.state.ISBN.length!==10)){
       alert('ISBN entry must be 10 or 13 digits')  
     } else {
@@ -103,7 +104,7 @@ export default class SellBook extends React.Component {
 
   render() {
     return (
-      <div className={cx('body')}>
+      <div className={cx('sellBookBody')}>
       	<h1>Sell Your Book</h1>
           {this.displayAlert()}
 	      	<p>ISBN</p> 

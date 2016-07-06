@@ -53,13 +53,15 @@ export default class Home extends Component {
 	 	<li key= {value._id}>
 	 		{value.hidden ? '' : 
 	 		<Link className={cx('results')} to={`/buyBook/${value._id}`}>
+	 			<br/>
 	 			<div className={cx('photo')}><img src={value.photo}/></div>
 			 	<div className={cx('title')}>{value.title}</div>
 			 	<div className={cx('author')}>by {value.author}</div> 
 			 	<div className={cx('ISBN')}>ISBN: {value.ISBN}</div> 
 			 	<div className={cx('price')}>${value.price}</div> 
 			 	<div className={cx('condition')}>Condition: {value.condition}</div>
-			 	<div className={cx('description')}>Description: <br/>{value.description}</div> <br/>
+			 	<div className={cx('description')}>Description: <br/>{value.description}</div>
+			 	<br/>
 			 </Link>
 			}
 	    </li>
@@ -69,7 +71,7 @@ export default class Home extends Component {
 
   noResults(){
   	var resultsArray = this.compare()
-  	if(resultsArray.length===0){
+  	if(resultsArray.length===0 && this.state.text !== ""){
   		return (
   			<div>Sorry, no books match your search.</div>)
   	}
@@ -82,14 +84,14 @@ export default class Home extends Component {
   render() {
     return (
       <div className={cx('body')}>
-        <h1>Stick it to the Universe(ity)!</h1>
+        <h1 className={cx('homeTitle')}>Book Sales for griz students by griz students!</h1>
         <input 
         	className={cx('searchBar')}
 	   		type="text"
 	   		name="search" 
 	   		value={this.state.text} 
 	   		onChange={(event) => {this.textChange(event)}} 
-	   		placeholder="Title, Author, ISBN" />
+	   		placeholder="Search for books by Title, Author or ISBN" />
 	   		<br/>
 	   	<ul>{this.compare()}</ul>
 	   	<div>{this.noResults()}</div>

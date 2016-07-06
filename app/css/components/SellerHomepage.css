@@ -1,5 +1,18 @@
 .sellerHomepageBody {
-	border-left: 2px black solid;
+	background-color: rgba(211, 211, 211, 0.3);
+  	padding: 15px;
+}
+.adminPageBody {
+	background-color: rgba(211, 211, 211, 0.3);
+  	padding: 15px;
+}
+.manageUsersBody {
+	background-color: rgba(211, 211, 211, 0.3);
+  	padding: 15px;
+}
+.buyerBooks{
+	border: 1px solid black;
+	padding: 10px;
 }
 .buyerBookList {
 	padding: 10px 10px 15px 10px;
@@ -33,7 +46,7 @@
 }
 .title {
   font-size: 30px;
-  border-bottom: 1px grey solid;
+  border-bottom: 1px black solid;
   margin-bottom: 10px;
 }
 .description {

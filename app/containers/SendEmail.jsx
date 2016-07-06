@@ -48,8 +48,8 @@ export default class SendEmail extends React.Component {
 
 	render(){
         return( 
-        	<div>
-        		<h3>email the seller</h3>
+        	<div className={cx('sendEmailBody')}>
+        		<h3>Email the Seller</h3>
         		<p><input className={cx('emailInputs')} placeholder='your email'onChange={(e)=>this.setState({fromEmail:e.target.value})} /></p>	
         		<p><input className={cx('emailInputs')} placeholder='subject' onChange={(e)=>this.setState({subject:e.target.value})} /></p>	
         		<p><textarea className={cx('content')} placeholder='content of the email' onChange={(e)=>this.setState({content:e.target.value})} /></p>

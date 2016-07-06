@@ -9,24 +9,34 @@
 
 body {
   margin: 0;
-  background-color: #c8cfd6;
 }
 
 .app {
   composes: box from './common/layout.css';
 
-  font-family: montserrat;
+  font-family: Garamond;
   font-weight: normal;
   font-smoothing: antialiased;
 }
+.backgroundPic {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  z-index: -2;
+  opacity: 0.8;
+}  
 h1 {
 	text-align: center;
+  z-index: 2;
+  font-family: Garamond; 
 }
 button {
 	background-color: #8c1919;
 	color: #fff;
 	border: none;
 	font-size: 18px;
+  font-family: Garamond;
 }
-
 

@@ -23,22 +23,26 @@ export default class SellerHomepage extends React.Component {
   }
   render() {
     return (
-      <div className={cx('body')}>
+      <div className={cx('sellerHomepageBody')}>
       	<h1>Seller Homepage</h1>
-      		<Link className={cx('link')} to='/sellBook'>Add a new listing </Link><br/>
-          <br/>
+      		<br/>
+        <div className={cx('buyerBooks')}>
+        <h3>Your current list of books for sale.</h3>
           <div>
-          {this.state.books.map((book)=>(<div className={cx('buyerBookList')}>
-           <div className={cx('photo')}><img src={book.photo}/> </div>
-           <div className={cx('title')}>  {book.title} </div>
-           <div className={cx('author')}>by {book.author} </div>
-           <div className={cx('ISBN')}>ISBN: {book.ISBN} </div>
-           <div className={cx('price')}>${book.price} </div>
-           <div className={cx('condition')}>Condition: {book.condition} </div>
-           <div className={cx('description')}>Description: <br/> {book.description} </div>
-           <Link className={cx('editLink')} to={`/Editor/${book._id}`}>Edit Post</Link>
-            <br/>
-          </div>))} 
+            {this.state.books.map((book)=>(
+              <div className={cx('buyerBookList')}>
+               <div className={cx('photo')}><img src={book.photo}/> </div>
+               <div className={cx('title')}>  {book.title} </div>
+               <div className={cx('author')}>by {book.author} </div>
+               <div className={cx('ISBN')}>ISBN: {book.ISBN} </div>
+               <div className={cx('price')}>${book.price} </div>
+               <div className={cx('condition')}>Condition: {book.condition} </div>
+               <div className={cx('description')}>Description: <br/> {book.description} </div>
+               <Link className={cx('editLink')} to={`/Editor/${book._id}`}>Edit Post</Link>
+                <br/>
+              </div>
+            ))} 
+          </div>
         </div>
       </div> 	
     );

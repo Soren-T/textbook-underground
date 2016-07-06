@@ -47,7 +47,7 @@ export default class AdminPage extends React.Component {
  }
   render() {
     return (
-      <div className={cx('body')}>
+      <div className={cx('adminPageBody')}>
       	<h1>Admin Page</h1>
           <br/>
           <div>
