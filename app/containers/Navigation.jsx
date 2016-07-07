@@ -69,11 +69,11 @@ export default class Navigation extends Component {
     return (
       <div className={cx('button')}>
         <h3 className={cx('menu')}>Menu</h3>
-        <div className={cx('navigation')}>
+        <span className={cx('navigation')}>
           <Link className={cx('item')} to='/'>Buy Books</Link>
           {this.sellBookLink()}
           {this.logStatus()}
-        </div>
+        </span>
       </div>  
     );
   }

@@ -1,38 +1,57 @@
 .item {
-  display: block;
   text-decoration: none;
   padding: 15px;
   color: #fff;
   font-size: 24px;
+  margin-left:5px; 
+  margin-right:5px;
 }
 .item:hover {
-	border-left: 5px white solid;
-	padding-left: 10px;
+	border-bottom: 5px white solid;
+	padding-bottom: 10px;
 }
 .navigation {
+  padding: 15px;
   display: none;
 	width: auto;
-	background-color: rgba(140, 25, 25, 0.1);
+	background-color: rgba(140, 25, 25, 0.4);
   font-family: Tahoma;
 }
 .button {
-  background-color: rgba(140, 25, 25, 0.7);
-  position: absolute;
-  top: 10%;
-  left: 3%;
+  padding: 15px;
+  width: 150px;
+  font-size: 24px;
+  text-align: left;
+  display: inline-grid;
 }
 .button:hover {
   width: auto;
   height: auto;
+  text-align: left;
 }
-.button:hover .navigation {
-  display: block;
-}
-.button:focus .navigation {
-  display: block;
-}
+
 .menu {
-  margin: 15px;
+  display: inline;
   color: white;
   font-family: Tahoma;
+  padding: 15px;
+}
+@media all and (max-width: 3000px) and (min-width: 750px) {
+  .button:hover .navigation {
+  display: inline;
+  }
+  .item {
+  display: inline;
+  }
+}
+@media all and (max-width: 750px) and (min-width: 10px) {
+  .button:hover .navigation {
+  display: block;
+  }
+  .item {
+  display: block;
+  }
+  .menu {
+
+  }
 }

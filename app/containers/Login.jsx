@@ -74,7 +74,7 @@ export default class Login extends React.Component {
           <br/>
       		<input className={cx('inputBar')} type='password' onChange={(e)=>this.setState({password:e.target.value})} placeholder='password' />
           <br/>
-      		<button onClick={this.login.bind(this)}>Login</button>
+      		<button className={cx('btnSubmit')} onClick={this.login.bind(this)}>Login</button>
           <p className={cx('loginAlerts')}>
               {this.displayAlert()}
             </p>  

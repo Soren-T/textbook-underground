@@ -33,40 +33,30 @@ body {
 }
 
 @media all and (max-width: 3000px) and (min-width: 431px) {
-  .dropContent {
-    display: inline;
-  }
   .mainTitle {
-    margin-top: 5%;
-    margin-left: 12.5%;
+    display: block;
   	text-align: center;
     font-family: 'Red_October';
     font-size: 60px; 
   }
 }
-
-
-
 @media all and (max-width: 430px) and (min-width: 10px) {
-  .dropContent {
-    display: block;
-  }
   .mainTitle {
-    position: relative;
-    margin-top: 5%;
-    margin-left: 12.5%;
+    display: block;
     text-align: center;
     font-family: 'Red_October';
     font-size: 30px; 
   }
 }
-
 button {
 	background-color: #8c1919;
 	color: #fff;
 	border: none;
 	font-size: 18px;
   font-family: Garamond;
+}
+.dropContent {
+  display: block;
 }
 
 
