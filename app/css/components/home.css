@@ -21,6 +21,10 @@
   color: black;
   font-size: 18px;
 }
+.bookContent {
+  margin-left: 100px;
+  white-space: nowrap;
+}
 .author {
 
 }
@@ -34,11 +38,11 @@
 }
 .photo {
   float: left;
-  max-width: 200px;
+  max-width: 100px;
   margin-right: 10px;
 }
 .photo img {
-  max-width: 200px;
+  max-width: 100px;
 }
 .homeTitle {
   font-family: Tahoma;
