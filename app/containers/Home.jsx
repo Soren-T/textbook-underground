@@ -84,7 +84,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className={cx('body')}>
-        <h1 className={cx('homeTitle')}>Book Sales for griz students by griz students!</h1>
+        <h1 className={cx('homeTitle')}>Book sales for griz students by griz students!</h1>
         <input 
         	className={cx('searchBar')}
 	   		type="text"
@@ -93,8 +93,10 @@ export default class Home extends Component {
 	   		onChange={(event) => {this.textChange(event)}} 
 	   		placeholder="Search for books by Title, Author or ISBN" />
 	   		<br/>
-	   	<ul>{this.compare()}</ul>
-	   	<div>{this.noResults()}</div>
+	   	<div className={cx('bookResults')}>	
+	   		<ul>{this.compare()}</ul>
+	   	</div>	
+	   	<div className={cx('noResults')}>{this.noResults()}</div>
       </div>
     );
   }

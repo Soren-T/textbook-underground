@@ -67,11 +67,14 @@ export default class Navigation extends Component {
   }
   render() {
     return (
-      <div className={cx('navigation')}>
-        {this.sellBookLink()}
-        <Link className={cx('item')} to='/'>Buy Books</Link>
-        {this.logStatus()}
-      </div>
+      <div className={cx('button')}>
+        <h3 className={cx('menu')}>Menu</h3>
+        <div className={cx('navigation')}>
+          <Link className={cx('item')} to='/'>Buy Books</Link>
+          {this.sellBookLink()}
+          {this.logStatus()}
+        </div>
+      </div>  
     );
   }
 };

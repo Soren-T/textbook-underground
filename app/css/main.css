@@ -27,10 +27,16 @@ body {
   z-index: -2;
   opacity: 0.8;
 }  
-h1 {
+@font-face {
+    font-family: 'Red_October'; /*www.fontsquirrel.com*/
+    src: url("./fonts/red_october/red_october_regular-webfont.woff");
+}
+.mainTitle {
+  margin-top: 5%;
 	text-align: center;
   z-index: 2;
-  font-family: Garamond; 
+  font-family: 'Red_October';
+  font-size: 70px; 
 }
 button {
 	background-color: #8c1919;
