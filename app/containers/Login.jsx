@@ -35,6 +35,7 @@ export default class Login extends React.Component {
     }).then(function(response) {
       return response.json()
     }).then(function(json) {
+      var missingFields = []
       self.setState(json)
       if(json.user.local.isAdmin){
         self.props.toggleLogin()
@@ -42,6 +43,7 @@ export default class Login extends React.Component {
       }
       else if(json.user.local.isBlocked){
         missingFields.push("Your account has been banned. Please contact Admin at: admin@admin.com.")
+        self.createAlert(missingFields)
         browserHistory.push(`/Login/`)
       }
       else if(json.success){
@@ -49,11 +51,12 @@ export default class Login extends React.Component {
         browserHistory.push(`/SellerHomepage/`)
       }
     }).catch(function(ex) {
+      var missingFields = []
       missingFields.push("Your email/password entry is incorrect.")
+      self.createAlert(missingFields)
       browserHistory.push(`/Login/`)
       console.log('parsing failed', ex)
     })
-    this.createAlert(missingFields)
   }
   createAlert(msg){
     this.setState({errorMessages: this.state.errorMessages.concat(msg)})
@@ -75,9 +78,9 @@ export default class Login extends React.Component {
       		<input className={cx('inputBar')} type='password' onChange={(e)=>this.setState({password:e.target.value})} placeholder='password' />
           <br/>
       		<button className={cx('btnSubmit')} onClick={this.login.bind(this)}>Login</button>
-          <p className={cx('loginAlerts')}>
-              {this.displayAlert()}
-            </p>  
+          <span className={cx('loginAlerts')}>
+            {this.displayAlert()}
+          </span>  
           <h3> Or </h3><br/>
           <Link className={cx('link')} to='/CreateAccount'>Create an Account</Link>
       </div>
