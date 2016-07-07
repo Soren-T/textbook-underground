@@ -1,6 +1,7 @@
 .sellerHomepageBody {
 	background-color: rgba(211, 211, 211, 0.3);
   	padding: 15px;
+  	font-family: Tahoma;
 }
 .adminPageBody {
 	background-color: rgba(211, 211, 211, 0.3);
@@ -42,7 +43,7 @@
   font-size: 18px;
 }
 .author {
-  color: grey;
+  
 }
 .title {
   font-size: 30px;
@@ -59,4 +60,7 @@
 }
 .photo img {
 	max-width: 200px;
+}
+p {
+	font-size: 24px;
 }
