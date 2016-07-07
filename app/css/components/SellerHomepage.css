@@ -6,10 +6,12 @@
 .adminPageBody {
 	background-color: rgba(211, 211, 211, 0.3);
   	padding: 15px;
+  	font-family: Tahoma;
 }
 .manageUsersBody {
 	background-color: rgba(211, 211, 211, 0.3);
   	padding: 15px;
+  	font-family: Tahoma;
 }
 .buyerBooks{
 	border: 1px solid black;

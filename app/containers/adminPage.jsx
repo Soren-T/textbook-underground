@@ -59,6 +59,7 @@ export default class AdminPage extends React.Component {
            <div className={cx('price')}>${book.price} </div>
            <div className={cx('condition')}>Condition: {book.condition} </div>
            <div className={cx('description')}>Description: <br/> {book.description} </div>
+           <br/>
            <button onClick={this.deletePost.bind(this, book._id)}>Delete</button>
             <br/>
           </div>))} 

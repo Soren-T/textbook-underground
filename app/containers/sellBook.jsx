@@ -45,27 +45,27 @@ export default class SellBook extends React.Component {
     var valid = true
     var missingFields = []
     if(!this.state.ISBN){
-      missingFields.push("You are missing the ISBN")
+      missingFields.push("You are missing the ISBN.")
       valid = false
     } 
     if(!this.state.title){
-      missingFields.push("You are missing the title")
+      missingFields.push("You are missing the title.")
       valid = false
     }
     if(!this.state.author){
-      missingFields.push("You are missing the author")
+      missingFields.push("You are missing the author.")
       valid = false
     }
     if(!this.state.price){
-      missingFields.push("You are missing the price")
+      missingFields.push("You are missing the price.")
       valid = false
     }
     if(!this.state.condition){
-      missingFields.push("You are missing the condition")
+      missingFields.push("You are missing the condition.")
       valid = false
     }
     if(!this.state.description){
-      missingFields.push("You are missing the description")
+      missingFields.push("You are missing the description.")
       valid = false
     }
     this.createAlert(missingFields)
@@ -99,17 +99,16 @@ export default class SellBook extends React.Component {
     this.setState({errorMessages: this.state.errorMessages.concat(msg)})
   }
   displayAlert(msg){
-    return this.state.errorMessages.map((err) => <span><h2>{err}</h2><br/></span>)
+    return this.state.errorMessages.map((err) => <div className={cx("alerts")}><h2>{err}</h2><br/></div>)
   }
 
   render() {
     return (
       <div className={cx('sellBookBody')}>
       	<h1>Sell Your Book</h1>
-          {this.displayAlert()}
 	      	<p>ISBN</p> 
             <input className={cx('number')} type="number" placeholder= '9999999999999' onChange={(e)=>this.setState({ISBN:e.target.value})} />
-          <button onClick = {this.bookLookup.bind(this)}>Lookup Book</button> 
+          <button onClick = {this.bookLookup.bind(this)}>ISBN Search</button> 
           <p>Title</p> 
       			<input placeholder= 'Romeo and Juliet' value={this.state.title} onChange={(e)=>this.setState({title:e.target.value})} />
       		<p>Author</p> 
@@ -126,7 +125,10 @@ export default class SellBook extends React.Component {
       			<textarea className={cx('inputTextArea')} placeholder= 'This is a really great book. It was used in Theater 101, and it has a slightly worn cover.' onChange={(e)=>this.setState({description:e.target.value})} /><br/> 
           <p>Photo</p>
             <input placeholder="URL" value={this.state.photo} onChange={(e)=>this.setState({photo:e.target.value})} />
-      		<button onClick = {this.checkField.bind(this)}>Submit</button>
+          <div className={cx("alertBox")}>
+            <button onClick = {this.checkField.bind(this)}>Submit</button>
+            {this.displayAlert()}
+          </div>
       </div>      		
     );
   }

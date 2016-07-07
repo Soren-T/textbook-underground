@@ -28,6 +28,9 @@
 .button:hover .navigation {
   display: block;
 }
+.button:focus .navigation {
+  display: block;
+}
 .menu {
   margin: 15px;
   color: white;
