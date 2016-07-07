@@ -12,11 +12,12 @@ export default class Login extends React.Component {
 	constructor(props){
     super(props);
     this.state = {
-
+      errorMessages: []
     };
   }
 
-  login(){
+  loginAuth(){
+    var missingFields = []
     var self = this
     fetch('/api/v1/login', {
       credentials : 'same-origin',
@@ -36,12 +37,11 @@ export default class Login extends React.Component {
     }).then(function(json) {
       self.setState(json)
       if(json.user.local.isAdmin){
-        console.log('hey admin')
         self.props.toggleLogin()
         browserHistory.push(`/AdminPage/`)
       }
       else if(json.user.local.isBlocked){
-        alert("Your account has been banned. Please contact Admin at: admin@admin.com")
+        missingFields.push("Your account has been banned. Please contact Admin at: admin@admin.com.")
         browserHistory.push(`/Login/`)
       }
       else if(json.success){
@@ -49,12 +49,22 @@ export default class Login extends React.Component {
         browserHistory.push(`/SellerHomepage/`)
       }
     }).catch(function(ex) {
-      alert("Your email/password entry is incorrect")
+      missingFields.push("Your email/password entry is incorrect.")
       browserHistory.push(`/Login/`)
       console.log('parsing failed', ex)
     })
+    this.createAlert(missingFields)
   }
-
+  createAlert(msg){
+    this.setState({errorMessages: this.state.errorMessages.concat(msg)})
+  }
+  displayAlert(msg){
+    return this.state.errorMessages.map((err) => <div className={cx("loginAlerts")}><h2>{err}</h2><br/></div>)
+  }
+  login(){
+    this.state.errorMessages = []
+    this.loginAuth()
+  }
   render() {
     return (
       <div className={cx('loginBody')}>
@@ -64,7 +74,10 @@ export default class Login extends React.Component {
           <br/>
       		<input className={cx('inputBar')} type='password' onChange={(e)=>this.setState({password:e.target.value})} placeholder='password' />
           <br/>
-      		<button onClick={this.login.bind(this)}>Login</button>	      	
+      		<button onClick={this.login.bind(this)}>Login</button>
+          <p className={cx('loginAlerts')}>
+              {this.displayAlert()}
+            </p>  
           <h3> Or </h3><br/>
           <Link className={cx('link')} to='/CreateAccount'>Create an Account</Link>
       </div>

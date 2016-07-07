@@ -31,13 +31,36 @@ body {
     font-family: 'Red_October'; /*www.fontsquirrel.com*/
     src: url("./fonts/red_october/red_october_regular-webfont.woff");
 }
-.mainTitle {
-  margin-top: 5%;
-	text-align: center;
-  z-index: 2;
-  font-family: 'Red_October';
-  font-size: 70px; 
+
+@media all and (max-width: 3000px) and (min-width: 431px) {
+  .dropContent {
+    display: inline;
+  }
+  .mainTitle {
+    margin-top: 5%;
+    margin-left: 12.5%;
+  	text-align: center;
+    font-family: 'Red_October';
+    font-size: 60px; 
+  }
 }
+
+
+
+@media all and (max-width: 430px) and (min-width: 10px) {
+  .dropContent {
+    display: block;
+  }
+  .mainTitle {
+    position: relative;
+    margin-top: 5%;
+    margin-left: 12.5%;
+    text-align: center;
+    font-family: 'Red_October';
+    font-size: 30px; 
+  }
+}
+
 button {
 	background-color: #8c1919;
 	color: #fff;
@@ -45,4 +68,5 @@ button {
 	font-size: 18px;
   font-family: Garamond;
 }
+
 

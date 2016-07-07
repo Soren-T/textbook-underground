@@ -13,18 +13,20 @@ export default class CreateAccount extends React.Component {
 		super(props);
 		this.state = {
 			testEmail: "",
-			testPass: ""
+			testPass: "",
+			errorMessages: []
 		};
 	}
 	createAccount(){
+		var missingFields = []
 		if(this.state.email !== this.state.testEmail){
-			alert("Your email entires do not match")
+			missingFields.push("Your email entries do not match.")
 		}
 		else if(this.state.password !== this.state.testPass){
-			alert("Your password entires do not match")
+			missingFields.push("Your password entries do not match.")
 		} 
 		else if(!this.validateEmail(this.state.email)){
-			alert("Your email entry is not valid")
+			missingFields.push("Your email entry is not valid.")
 		}
 		else {
 			var self = this
@@ -43,13 +45,23 @@ export default class CreateAccount extends React.Component {
 			}).then(function() {
 	      		browserHistory.push('/Login')
 	   		})
-   		}    
+   		}
+   		this.createAlert(missingFields)    
 	}
 	validateEmail(email){
     	var filt = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     	return filt.test(email) 
 	}
-
+	createAlert(msg){
+    	this.setState({errorMessages: this.state.errorMessages.concat(msg)})
+  	}
+  	displayAlert(msg){
+    	return this.state.errorMessages.map((err) => <div className={cx("alerts")}><h2>{err}</h2><br/></div>)
+  	}
+  	submit(){
+  		this.state.errorMessages = []
+  		this.createAccount()
+  	}
   	render() {
 	    return (
 	      <div className={cx('createAccountBody')}>
@@ -63,7 +75,10 @@ export default class CreateAccount extends React.Component {
 	      		<br/>
 	      		<input className={cx('inputBar')} type='password' onChange={(e)=>this.setState({password:e.target.value})} placeholder='verify password' />
 	      		<br/>
-	      		<button onClick={this.createAccount.bind(this)}>Submit</button><br/>
+	      		<button onClick={this.submit.bind(this)}>Submit</button><br/>
+	      		<p className={cx('alerts')}>
+	      			{this.displayAlert()}
+	      		</p>	
 	      		<h3> Or </h3><br/>
 	      		<Link className={cx('link')} to='/Login'>Login</Link>
 	      	</div>	    
