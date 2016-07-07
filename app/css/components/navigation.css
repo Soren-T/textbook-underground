@@ -1,6 +1,6 @@
 .item {
   text-decoration: none;
-  padding: 15px;
+  padding: 20px;
   color: #fff;
   font-size: 24px;
   margin-left:5px; 
@@ -8,17 +8,17 @@
 }
 .item:hover {
 	border-bottom: 5px white solid;
-	padding-bottom: 10px;
+	padding-bottom: 25px;
 }
 .navigation {
-  padding: 15px;
+  padding: 30px;
   display: none;
 	width: auto;
 	background-color: rgba(140, 25, 25, 0.4);
   font-family: Tahoma;
 }
 .button {
-  padding: 15px;
+  padding: 20px;
   width: 150px;
   font-size: 24px;
   text-align: left;
@@ -34,7 +34,8 @@
   display: inline;
   color: white;
   font-family: Tahoma;
-  padding: 15px;
+  padding: 20px;
+  font-size: 40px;
 }
 @media all and (max-width: 3000px) and (min-width: 750px) {
   .button:hover .navigation {
