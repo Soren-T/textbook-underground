@@ -11,7 +11,7 @@
 }
 .navigation {
   display: none;
-	width: 100%;
+	width: auto;
 	background-color: rgba(140, 25, 25, 0.1);
   font-family: Tahoma;
 }
@@ -22,7 +22,7 @@
   left: 3%;
 }
 .button:hover {
-  width: 100%;
+  width: auto;
   height: auto;
 }
 .button:hover .navigation {
