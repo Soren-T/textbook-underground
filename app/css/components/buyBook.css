@@ -7,6 +7,7 @@
   text-decoration: none;
   color: black;
   font-size: 18px;
+  padding: 5px;
 }
 .author {
   
@@ -26,4 +27,12 @@
 }
 .photo img {
   max-width: 200px;
+}
+.emailSeller {
+  padding-top: 5px;
+  padding-left: 10px; 
+  clear: left;
+}
+.bookContent {
+  overflow: hidden;
 }

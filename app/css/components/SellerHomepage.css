@@ -3,11 +3,6 @@
   	padding: 15px;
   	font-family: Tahoma;
 }
-.adminPageBody {
-	background-color: rgba(211, 211, 211, 0.3);
-  	padding: 15px;
-  	font-family: Tahoma;
-}
 .manageUsersBody {
 	background-color: rgba(211, 211, 211, 0.3);
   	padding: 15px;
@@ -65,4 +60,26 @@
 }
 p {
 	font-size: 24px;
+}
+.editBtn {
+	padding: 5px;
+	clear: left;
+}
+.bookDetails {
+	overflow: hidden;
+}
+.bookContainer {
+
+}
+/* Admin Page*/
+.adminPageBody {
+	background-color: rgba(211, 211, 211, 0.3);
+  	padding: 15px;
+  	font-family: Tahoma;
+}
+.bookContent {
+	overflow: hidden;
+}
+.deleteBtn {
+	clear: left;
 }

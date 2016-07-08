@@ -54,16 +54,18 @@ export default class Home extends Component {
 	 		{value.hidden ? '' : 
 	 		<Link className={cx('results')} to={`/buyBook/${value._id}`}>
 	 			<br/>
-	 			<div className={cx('photo')}><img src={value.photo}/></div>
-	 			<span className={cx('bookContent')}>
-			 		<div className={cx('title')}>{value.title}</div>
-			 		<div className={cx('author')}>by {value.author}</div> 
-			 		<div className={cx('ISBN')}>ISBN: {value.ISBN}</div> 
-			 		<div className={cx('price')}>${value.price}</div> 
-			 		<div className={cx('condition')}>Condition: {value.condition}</div>
-			 		<div className={cx('description')}>Description: <br/>{value.description}</div>
-			 		<br/>
-			 	</span>
+	 			<div className={cx('mainContainer')}>
+		 			<div className={cx('photo')}><img src={value.photo}/></div>
+		 			<div className={cx('bookContent')}>
+				 		<div className={cx('title')}>{value.title}</div>
+				 		<div className={cx('author')}>by {value.author}</div> 
+				 		<div className={cx('ISBN')}>ISBN: {value.ISBN}</div> 
+				 		<div className={cx('price')}>${value.price}</div> 
+				 		<div className={cx('condition')}>Condition: {value.condition}</div>
+				 		<div className={cx('description')}>Description: <br/>{value.description}</div>
+				 		<br/>
+				 	</div>
+				 </div>
 			 </Link>
 			}
 	    </li>

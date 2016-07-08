@@ -52,15 +52,19 @@ export default class AdminPage extends React.Component {
           <br/>
           <div>
           {this.state.books.map((book)=>(<div className={cx('buyerBookList')}>
-           <div className={cx('photo')}><img src={book.photo}/> </div>
-           <div className={cx('title')}>  {book.title} </div>
-           <div className={cx('author')}>by {book.author} </div>
-           <div className={cx('ISBN')}>ISBN: {book.ISBN} </div>
-           <div className={cx('price')}>${book.price} </div>
-           <div className={cx('condition')}>Condition: {book.condition} </div>
-           <div className={cx('description')}>Description: <br/> {book.description} </div>
-           <br/>
-           <button onClick={this.deletePost.bind(this, book._id)}>Delete</button>
+            <div className={cx('photo')}><img src={book.photo}/> </div>
+            <div className={cx('bookContent')}>
+              <div className={cx('title')}>  {book.title} </div>
+              <div className={cx('author')}>by {book.author} </div>
+              <div className={cx('ISBN')}>ISBN: {book.ISBN} </div>
+              <div className={cx('price')}>${book.price} </div>
+              <div className={cx('condition')}>Condition: {book.condition} </div>
+              <div className={cx('description')}>Description: <br/> {book.description} </div>
+            </div>
+            <br/>
+            <div className={cx('deleteBtn')}>
+              <button onClick={this.deletePost.bind(this, book._id)}>Delete</button>
+            </div>
             <br/>
           </div>))} 
         </div>

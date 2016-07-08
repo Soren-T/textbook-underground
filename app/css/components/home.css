@@ -7,6 +7,9 @@
 .bookResults {
   text-align: left;
 }
+.bookContent {
+  overflow: hidden;
+}
 .noResults {
   font-family: Tahoma;
   font-size: 24px;
