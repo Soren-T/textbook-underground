@@ -75,9 +75,10 @@ export default class Home extends Component {
 
   noResults(){
   	var resultsArray = this.compare()
-  	if(resultsArray.length===0 && this.state.text !== ""){
+  	if(resultsArray.length === 0 && this.state.text !== ""){
   		return (
-  			<div>Sorry, no books match your search.</div>)
+  			<div>Sorry, no books match your search.</div>
+  		)
   	}
   }
 
